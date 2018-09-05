@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="data/style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
-	<title>Search</title>
+	<title>Profile</title>
 </head>
 <body>
 	<div id="mySidenav" class="sidenav">
@@ -38,7 +38,7 @@
 				<a href="liveAchievement.php"><i class="fas fa-gamepad"></i></a>
 			</div>
 			<div class="dropdown">
-				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$username.".png)'></button> "?>
+				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$_SESSION['username'].".png)'></button> "?>
 				<div id="myDropdown" class="dropdown-content">
 					<form method="post" action="profile.php">
 						<button type="submit" class="button" name="profile">My Profile</button>
