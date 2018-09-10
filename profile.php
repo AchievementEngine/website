@@ -207,7 +207,53 @@
 				
 			</div>
 			
-		</div>		
+		</div>	
+
+		<div class="imdown">
+			<button onclick="showIM()" class="imbtn"></button>
+			 <div id="im" class="im-content">
+				<div class="friend">
+					<div class="friendPic">
+						<img src="data/defaultpp.png" height="40px">
+					</div>
+					<div class="friendInfo">
+						<div class="friendName">
+							Dave
+						</div>
+						<div class="friendStatus ingame">
+							CS:GO
+						</div>
+					</div>
+				</div>
+				<div class="friend">
+					<div class="friendPic">
+						<img src="data/defaultpp.png" height="40px">
+					</div>
+					<div class="friendInfo">
+						<div class="friendName">
+							Trev
+						</div>
+						<div class="friendStatus ingame">
+							Fortnite
+						</div>
+					</div>
+				</div>
+				<div class="friend">
+					<div class="friendPic">
+						<img src="data/defaultpp.png" height="40px">
+					</div>
+					<div class="friendInfo">
+						<div class="friendName">
+							Rod
+						</div>
+						<div class="friendStatus away">
+							Away
+						</div>
+					</div>
+				</div>
+			 </div>
+		</div>
+		
 	</div>
 </body>
 
@@ -244,10 +290,17 @@ window.onclick = function(event) {
         openDropdown.classList.remove('show');
       }
     }
-	
-	
-		
+  }
+  if (!event.target.matches('.imbtn')) {
 
+    var dropdowns = document.getElementsByClassName("im-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
   }
 }
 
