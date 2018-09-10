@@ -20,7 +20,7 @@ if (isset($_POST['reg_user'])) {
 	$user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email'";
 	$result = $db->query($user_check_query);
 	$user = $result->fetch_assoc();
-
+	
 	if ($user) { // if user exists
 		$errors++;
 		if ($user['username'] === $username) {

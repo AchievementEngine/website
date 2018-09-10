@@ -1,11 +1,18 @@
 <?php 
-	include('server.php');	
+	session_start();
 	$db = mysqli_connect('localhost', 'root', '', 'login');
 	$username = $_SESSION['username'];
+	
+	//check user is logged in
+	if (!isset($_SESSION['username'])) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: login.php');
+	}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" href="data/teamae.png">
 	<link rel="stylesheet" type="text/css" href="data/style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
@@ -14,7 +21,7 @@
 <body>
 	<div id="mySidenav" class="sidenav">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	  <a href="Achievements.php">My Achievements</a>
+	  <a href="achievements.php">My Achievements</a>
 	  <a href="index.php">About</a>
 	</div>
 	
@@ -40,12 +47,8 @@
 			<div class="dropdown">
 				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$username.".png)'></button> "?>
 				<div id="myDropdown" class="dropdown-content">
-					<form method="post" action="profile.php">
-						<button type="submit" class="button" name="profile">My Profile</button>
-					</form>
-					<form method="post" action="editProfile.php">
-						<button type="submit" class="button" name="editProfile">Edit Profile</button>
-					</form>
+					<a href="profile.php">My Profile</a>
+					<a href="editProfile.php">Edit Profile</a>
 					<a href="logout.php">Log Out</a>
 				</div>
 			</div>
@@ -81,9 +84,9 @@
 						$dispName = $row['dispName'];
 						echo "<p style='font-size:25px'>
 							<a href='profile.php?username=".$searchedUsername."'>
-								<img style='vertical-align:middle' src='data/uploads/".$searchedUsername.".png' height='50'>   ".$searchedUsername." (".$dispName.")
+								<img style='vertical-align:middle' src='data/uploads/".$searchedUsername.".png' height='50'>   ".$dispName." (".$searchedUsername.")
 							</a></p><br>";
-					}							//shutup i know what im doing dont judge my code
+					}		//shutup i know what im doing dont judge my code
 				} else {
 					echo "No results";
 				}

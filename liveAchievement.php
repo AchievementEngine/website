@@ -75,6 +75,10 @@
 	</style>
 </head>
 <body>
+	<div class="body">
+		<a href="profile.php" style="color:white;">Back to other website</a>
+	</div>
+
 	<div class="small">
 		<div class="windowsBar">
 			<i class="fas fa-window-minimize"></i><i class="fas fa-window-restore"></i><i class="fas fa-window-close"></i>

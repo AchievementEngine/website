@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" href="data/teamae.png">
 	<link rel="stylesheet" type="text/css" href="data/style.css">
 	<link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 	<title>Achievement Engine</title>
-	<a href="home.php" style="color:white;">Back to other website</a>
+	<a href="profile.php" style="color:white;">Back to other website</a>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>	
 		$(document).ready(function() {
@@ -572,7 +573,7 @@
 			</div>
 		</div>
 		<div class="member">
-			<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-1/p160x160/13226689_1166365536721451_645010810966200052_n.jpg?_nc_cat=0&oh=c15dba75d31376473d9aab673ac0c134&oe=5B7D65EA" class="round glow-white">
+			<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-9/13226689_1166365536721451_645010810966200052_n.jpg?_nc_cat=0&oh=5744e8415fceced08234fb4caf6f0659&oe=5C27FFAB" class="round glow-white">
 			<div class="member-name">
 				Cameron Burrows
 			</div>
@@ -612,7 +613,7 @@
 			</div>
 		</div>
 		<div class="member">
-			<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-1/p160x160/12688283_1227494160611385_5326501389769914976_n.jpg?_nc_cat=0&oh=cc5785e1fdb85df3d2c86e675e418315&oe=5B768988" class="round glow-white">
+			<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-9/12688283_1227494160611385_5326501389769914976_n.jpg?_nc_cat=0&oh=f6c04546d5193db5195458cd2f92f7b9&oe=5BF1F3B3" class="round glow-white">
 			<div class="member-name">
 				Chris Lawson
 			</div>
@@ -632,7 +633,7 @@
 			</div>
 		</div>
 		<div class="member">
-			<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-1/p160x160/28279007_10213677971816327_4009046032532046626_n.jpg?_nc_cat=0&oh=3970e9462d4dbe502f533fa3b137c31e&oe=5B8D5230" class="round glow-white">
+			<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-9/28279007_10213677971816327_4009046032532046626_n.jpg?_nc_cat=0&oh=3ca40f8e6ee3829dc18abc30ac392c64&oe=5C24D66F" class="round glow-white">
 			<div class="member-name">
 				Adam Stroud
 			</div>

@@ -1,8 +1,6 @@
 <?php
-	include('server.php');
-	include('errors.php');
-	$db = mysqli_connect('localhost', 'root', '', 'login');
-	
+	include_once "connect.php";
+	session_start();
 	$username = $_SESSION['username'];
 		
 	if (isset($_POST['submit'])) {
@@ -19,15 +17,20 @@
 		
 		if (in_array($fileActualExt, $allowed)) {		#allow if png or jpg
 			if ($fileError === 0) {
-				resize_crop_image(500, 500, $fileTmpName, "data/uploads/".$username.".png");	#shrink then crop to square 500x500 px, using middle of image
-				header("Location: profile.php?username=$username");
+				resize_crop_image(500, 500, $fileTmpName, "../data/uploads/".$username.".png");	#shrink then crop to square 500x500 px, using middle of image
+				$_SESSION['profile_updated'] = "Profile successfully updated! (Ctrl + F5 to force refresh if it didn't change)";
+				header("Location: ../editProfile.php");
 			} else {
-				array_push($errors, "Error uploading file");
-				#echo "Error uploading file";
+				//array_push($errors, "Error uploading file");
+				//todo
+				$_SESSION['profile_failed'] = "Profile was not updated!";
+				header("Location: ../editProfile.php");
 			}
 		} else {
-			array_push($errors, "Please upload a jpg or a png");
-			#echo "Please upload a jpg or a png";
+			//array_push($errors, "Please upload a jpg or a png");
+			//todo
+			$_SESSION['profile_failed'] = "Profile was not updated!";
+			header("Location: ../editProfile.php");
 		}
 	}
 	
@@ -77,5 +80,4 @@
 		if($dst_img)imagedestroy($dst_img);
 		if($src_img)imagedestroy($src_img);
 	}
-	
 ?>

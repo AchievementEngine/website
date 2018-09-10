@@ -22,7 +22,7 @@
 	$fname = $row['fname'];
 	$lname = $row['lname'];
 	$country = $row['country'];
-	$about = $row['about'];		
+	$discord = $row['discord'];		
 	
 	$featuredAch = $row['featuredach'];
 	if (empty($row['featuredach'])) {
@@ -36,8 +36,8 @@
 		$achResults = $db->query($ach);
 		$achRow = $achResults->fetch_array(MYSQLI_ASSOC);
 		$achName = $achRow['achName'];
+		//todo can probably join the two selects and make it a lot 
 		$achType = $achRow['achType'];
-	
 		$gameID = $achRow['gameID'];
 		$game = "SELECT * FROM games WHERE gameID='$gameID'";
 		$gameResults = $db->query($game);
@@ -46,28 +46,28 @@
 		$gameStr = $gameRow['gameStr'];
 	}
 	/* Figure out total number of achievements */
-	$totAch = "SELECT * FROM uachievements WHERE username='$username'";
+	$totAch = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achValue = u.progress";
 	$totAchResults = $db->query($totAch);
 	$totalAchs=mysqli_num_rows($totAchResults);
 	
 	/* figure out total number of bronze, silver, gold, and diamond achievements */
-	$totBronze = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE (u.username='$username') AND a.achType='bronze'";
+	$totBronze = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='bronze' AND a.achValue = u.progress";
 	$totBronzeResults = $db->query($totBronze);
 	$totalBronzes = mysqli_num_rows($totBronzeResults);
 	
-	$totSilver = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE (u.username='$username') AND a.achType='silver'";
+	$totSilver = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='silver' AND a.achValue = u.progress";
 	$totSilverResults = $db->query($totSilver);
 	$totalSilvers = mysqli_num_rows($totSilverResults);
 	
-	$totGold = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE (u.username='$username') AND a.achType='gold'";
+	$totGold = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='gold' AND a.achValue = u.progress";
 	$totGoldResults = $db->query($totGold);
 	$totalGolds = mysqli_num_rows($totGoldResults);
 	
-	$totDiamond = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE (u.username='$username') AND a.achType='diamond'";
+	$totDiamond = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='diamond' AND a.achValue = u.progress";
 	$totDiamondResults = $db->query($totDiamond);
 	$totalDiamonds = mysqli_num_rows($totDiamondResults);
 	
-	//check user is logged in?
+	//check user is logged in
 	if (!isset($_SESSION['username'])) {
 		$_SESSION['msg'] = "You must log in first";
 		header('location: login.php');
@@ -84,6 +84,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" href="data/teamae.png">
 	<link rel="stylesheet" type="text/css" href="data/style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
@@ -92,7 +93,7 @@
 <body>
 	<div id="mySidenav" class="sidenav">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	  <a href="Achievements.php">My Achievements</a>
+	  <a href="achievements.php">My Achievements</a>
 	  <a href="index.php">About</a>
 	</div>
 	
@@ -118,12 +119,8 @@
 			<div class="dropdown">
 				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$_SESSION['username'].".png)'></button> "?>
 				<div id="myDropdown" class="dropdown-content">
-					<form method="post" action="profile.php">
-						<button type="submit" class="button" name="profile">My Profile</button>
-					</form>
-					<form method="post" action="editProfile.php">
-						<button type="submit" class="button" name="editProfile">Edit Profile</button>
-					</form>
+					<a href="profile.php">My Profile</a>
+					<a href="editProfile.php">Edit Profile</a>
 					<a href="logout.php">Log Out</a>
 				</div>
 			</div>
@@ -189,7 +186,7 @@
 							<tr>
 								<td class="tabIcon"><i class="fab fa-discord"></i></td>
 								<td>
-									Animorphs#9412<!-- Discord/Link to other platform of user here -->
+									<?= $discord; ?><!-- Discord/Link to other platform of user here -->
 								</td>
 							</tr>
 							<tr>
@@ -211,6 +208,52 @@
 			</div>
 			
 		</div>		
+	</div>
+	
+	<div class="imdown">
+			<button onclick="showIM()" class="imbtn"></button>
+			 <div id="im" class="im-content">
+				<div class="friend">
+					<div class="friendPic">
+						<img src="data/defaultpp.png" height="40px">
+					</div>
+					<div class="friendInfo">
+						<div class="friendName">
+							Dave
+						</div>
+						<div class="friendStatus ingame">
+							CS:GO
+						</div>
+					</div>
+				</div>
+				<div class="friend">
+					<div class="friendPic">
+						<img src="data/defaultpp.png" height="40px">
+					</div>
+					<div class="friendInfo">
+						<div class="friendName">
+							Trev
+						</div>
+						<div class="friendStatus ingame">
+							Fortnite
+						</div>
+					</div>
+				</div>
+				<div class="friend">
+					<div class="friendPic">
+						<img src="data/defaultpp.png" height="40px">
+					</div>
+					<div class="friendInfo">
+						<div class="friendName">
+							Rod
+						</div>
+						<div class="friendStatus away">
+							Away
+						</div>
+					</div>
+				</div>
+			 </div>
+		</div>
 	</div>
 </body>
 
@@ -237,21 +280,26 @@ function showIM() {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-	
-	
-		
-
-  }
+	if (!event.target.matches('.dropbtn')) {
+		var dropdowns = document.getElementsByClassName("dropdown-content");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+			}
+		}
+	}
+	if (!event.target.matches('.imbtn')) {
+		var dropdowns = document.getElementsByClassName("im-content");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+			}
+		}
+	}
 }
 
 </script>

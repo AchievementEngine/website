@@ -12,16 +12,21 @@
 	$fname = $row['fname'];
 	$lname = $row['lname'];
 	$country = $row['country'];
-	$about = $row['about'];
-	//$featuredAch = $row['featuredAch'];	//TODO maybe gonna fuck up
+	$discord = $row['discord'];
+
 	$achArray = array();
-	$uachievements = "SELECT * FROM uachievements WHERE username='$username'";
-	$achResults = $db->query($uachievements);
-	if ($achResults == true) {
-		while ($achRow = $achResults->fetch_assoc()) {
-			array_push($achArray, $achRow['achStr']);
-		}
+	$query = "SELECT a.achName FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID INNER JOIN games g ON a.gameID = g.gameID WHERE u.username='$username' AND u.progress = a.achValue";
+	$queryResults = $db->query($query);
+	while ($queryRow = $queryResults->fetch_assoc()) {
+		array_push($achArray, $queryRow['achName']);
 	}
+	
+	//check user is logged in
+	if (!isset($_SESSION['username'])) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: login.php');
+	}
+	
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		unset($_SESSION['username']);
@@ -32,6 +37,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" href="data/teamae.png">
 	<link rel="stylesheet" type="text/css" href="data/style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
@@ -40,7 +46,7 @@
 <body>
 	<div id="mySidenav" class="sidenav">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	  <a href="Achievements.php">My Achievements</a>
+	  <a href="achievements.php">My Achievements</a>
 	  <a href="index.php">About</a>
 	</div>
 	
@@ -66,12 +72,8 @@
 			<div class="dropdown">
 				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$username.".png)'></button> "?>
 				<div id="myDropdown" class="dropdown-content">
-					<form method="post" action="profile.php">
-						<button type="submit" class="button" name="profile">My Profile</button>
-					</form>
-					<form method="post" action="editProfile.php">
-						<button type="submit" class="button" name="editProfile">Edit Profile</button>
-					</form>
+					<a href="profile.php">My Profile</a>
+					<a href="editProfile.php">Edit Profile</a>
 					<a href="logout.php">Log Out</a>
 				</div>
 			</div>
@@ -83,17 +85,28 @@
 			<?php echo "<img src='data/uploads/".$username.".png' height='200px'>"; ?> <!-- User profile pic -->
 		</div>
 		
-		<div class="content">
+		<div class="content" style="overflow:hidden">	<!-- overflow makes sure the grey box actually covers the content. temporary hopefully -->
 			<div class="topInfo">
 				<div class="username" style="text-align:left">Edit Profile</div>
 			</div>
 			
 			<?php  if (isset($_SESSION['profile_updated'])) : ?>
-				<div class="success">
+				<div>
 					<p style="padding-left: 200px; color: green; font-size: 15pt">
 						<?php 
 							echo $_SESSION['profile_updated']; 
 							unset($_SESSION['profile_updated']);
+						?>
+					</p>
+				</div>
+			<?php endif ?>	
+			
+			<?php  if (isset($_SESSION['profile_failed'])) : ?>
+				<div>
+					<p style="padding-left: 200px; color: red; font-size: 15pt">
+						<?php 
+							echo $_SESSION['profile_failed']; 
+							unset($_SESSION['profile_failed']);
 						?>
 					</p>
 				</div>
@@ -126,8 +139,8 @@
 				</div>
 				
 				<div class="inputInfo">
-					<label>About</label>
-					<textarea maxlength="200" rows="5" name="about"><?php echo $about; ?></textarea><br><br>
+					<label>Discord</label>
+					<input type="text" name="discord"  value="<?php echo $discord; ?>"><br><br>
 				</div>
 
 				<div class="inputInfo">
@@ -135,7 +148,8 @@
 				</div>
 			</form>
 			
-			<br><br><br><br><br><br><br>
+			<br><br><br><br><br><hr><br><br>	<!-- one of these is a HR not a BR -->
+			
 			
 			<form action="scripts/upload.php" method="POST" enctype="multipart/form-data">
 				<div class="inputInfo" style="padding-left: 55px">
@@ -147,7 +161,7 @@
 				</div>
 			</form>
 			
-			<br><br><br><br>
+			<br><br><hr><br><br>		<!-- one hr as well -->
 			
 			<form action="scripts/editAchievements.php" method="POST">
 				<div class="inputInfo">

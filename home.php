@@ -1,12 +1,9 @@
 <?php 
-	include('server.php');
-
-	// connect to the database
-	$db = mysqli_connect('localhost', 'root', '', 'login');
-	
+	session_start();
+	include_once "scripts/connect.php";
 	$username = $_SESSION['username'];
-	
-	//check user is logged in?
+
+	//check user is logged in
 	if (!isset($_SESSION['username'])) {
 		$_SESSION['msg'] = "You must log in first";
 		header('location: login.php');
@@ -22,6 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" href="data/teamae.png">
 	<link rel="stylesheet" type="text/css" href="data/style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
@@ -39,7 +37,7 @@
 	
 	<div id="mySidenav" class="sidenav">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	  <a href="Achievements.php">My Achievements</a>
+	  <a href="achievements.php">My Achievements</a>
 	  <a href="index.php">About</a>
 	</div>
 	
@@ -63,12 +61,8 @@
 			<div class="dropdown">
 				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$username.".png)'></button> "?>
 				<div id="myDropdown" class="dropdown-content">
-					<form method="post" action="profile.php">
-						<button type="submit" class="button" name="profile">My Profile</button>
-					</form>
-					<form method="post" action="editProfile.php">
-						<button type="submit" class="button" name="editProfile">Edit Profile</button>
-					</form>
+					<a href="profile.php">My Profile</a>
+					<a href="editProfile.php">Edit Profile</a>
 					<a href="logout.php">Log Out</a>
 				</div>
 			</div>
@@ -131,57 +125,6 @@
 		
 		
 	</div>
-	<!-- Friends bar (removed for now)
-	<div class="friendsList">
-		<ul>
-			<li>
-				<div class="friend">
-					<div class="friendPic">
-						<img src="data/defaultpp.png" height="40px">
-					</div>
-					<div class="friendInfo">
-						<div class="friendName">
-							Dave
-						</div>
-						<div class="friendStatus ingame">
-							CS:GO
-						</div>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="friend">
-					<div class="friendPic">
-						<img src="data/defaultpp.png" height="40px">
-					</div>
-					<div class="friendInfo">
-						<div class="friendName">
-							Trev
-						</div>
-						<div class="friendStatus ingame">
-							Fortnite
-						</div>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="friend">
-					<div class="friendPic">
-						<img src="data/defaultpp.png" height="40px">
-					</div>
-					<div class="friendInfo">
-						<div class="friendName">
-							Rod
-						</div>
-						<div class="friendStatus away">
-							Away
-						</div>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div> -->
-	
 </body>
 
 <script>
