@@ -224,12 +224,8 @@ header .farleft {
 }
 
 header .searchBox {
-	height:30px;
-	width:400px;
-	background-color:#36393e;
-	border:none;
-	margin:5px 15px 5px 50px;
-	padding:2px;
+	height:40px;
+	margin:0px 15px 0px 50px;
 	font-size:16pt;
 	color:white;
 	font-family:Open Sans;
@@ -392,7 +388,7 @@ input, label {
 input[type="text"] { 
 	border: 1px solid grey;
     border-radius: 5px;
-	padding: 5px 10px;
+	padding: 0px 10px;
 	width: 40%;
 	background-color:#2c2f33;
 }
@@ -754,6 +750,7 @@ a {
 	/*background-image: url("uploads/defaultProfile.png");*/
 	background-size: 100%;
     background-position: 45% 53%;
+	background-repeat: no-repeat;
     width: 40px;
     height: 40px;
     border-radius: 100%;
