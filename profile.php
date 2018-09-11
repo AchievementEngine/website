@@ -108,14 +108,11 @@
 			<form method="post" action="search.php">
 				<div class="searchzone">
 					<input type="text" name="search" class="searchBox" placeholder="Search...">
-					<button style="font-family:FontAwesome"><i class="fas fa-search"></i></button>
+					<button style="font-family:FontAwesome;height:40px;width:40px"><i class="fas fa-search"></i></button>
 				</div>
 			</form>
 		</div>
 		<div class="right">
-			<div class="topLink">
-				<a href="liveAchievement.php"><i class="fas fa-gamepad"></i></a>
-			</div>
 			<div class="dropdown">
 				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$_SESSION['username'].".png)'></button> "?>
 				<div id="myDropdown" class="dropdown-content">

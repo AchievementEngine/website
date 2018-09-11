@@ -30,23 +30,16 @@
 			<form method="post" action="search.php">
 				<div class="searchzone">
 					<input type="text" name="search" class="searchBox" placeholder="Search...">
-					<button style="font-family:FontAwesome"><i class="fas fa-search"></i></button>
+					<button style="font-family:FontAwesome;height:40px;width:40px"><i class="fas fa-search"></i></button>
 				</div>
 			</form>
 		</div>
 		<div class="right">
-			<div class="topLink">
-				<a href="liveAchievement.php"><i class="fas fa-gamepad"></i></a>
-			</div>
 			<div class="dropdown">
 				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$_SESSION['username'].".png)'></button> "?>
 				<div id="myDropdown" class="dropdown-content">
-					<form method="post" action="profile.php">
-						<button type="submit" class="button" name="profile">My Profile</button>
-					</form>
-					<form method="post" action="editProfile.php">
-						<button type="submit" class="button" name="editProfile">Edit Profile</button>
-					</form>
+					<a href="profile">My Profile</a>
+					<a href="editProfile">Edit Profile</a>
 					<a href="logout.php">Log Out</a>
 				</div>
 			</div>
