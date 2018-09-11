@@ -134,12 +134,12 @@
 		
 		<div class="content">
 			<div class="topInfo">
-				<div class="username"><?= $dispName." "; ?><img src="data/700achscore.png" height="70px"></div><!-- User selected badge here -->
+				<div class="username"><?= $dispName." "; ?></div><!-- User selected badge here -->
 				<div class="achOverview">
 					<i class="fas fa-circle" style="color:#CD7F32"></i> <?= $totalBronzes ?><!-- Bronze num of ach here --> 
-					<i class="fas fa-circle" style="color:#C0C0C0"></i> <?= $totalSilvers ?><!-- Silver num of ach here --> 
+					<i class="fas fa-circle" style="color:#D8D8D8"></i> <?= $totalSilvers ?><!-- Silver num of ach here --> 
 					<i class="fas fa-circle" style="color:#FFD700"></i> <?= $totalGolds ?><!-- Gold num of ach here --> 
-					<i class="fas fa-circle" style="color:#5bb9e2"></i> <?= $totalDiamonds ?><!-- Platinum num of ach here -->
+					<i class="fas fa-circle" style="color:#00F6FF"></i> <?= $totalDiamonds ?><!-- Platinum num of ach here -->
 				</div>
 			</div>
 			<div class="moreInfo">
@@ -152,11 +152,11 @@
 								if($achType == "bronze") {
 									echo "<i class='fas fa-circle' style='color:#CD7F32'></i>";
 								} else if($achType == "silver") {
-									echo "<i class='fas fa-circle' style='color:#C0C0C0'></i>";
+									echo "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
 								} else if($achType == "gold") {
 									echo "<i class='fas fa-circle' style='color:#FFD700'></i>";
 								} else if($achType == "diamond") {
-									echo "<i class='fas fa-circle' style='color:#5bb9e2'></i>";
+									echo "<i class='fas fa-circle' style='color:#00F6FF'></i>";
 								} else if($achType == "nil") {
 									echo "<i class='fas fa-circle' style='color:#000000'></i>";
 								}
@@ -204,9 +204,121 @@
 						</table>
 					</div>
 				</span>
-				
+				<span class="showcase">
+					<?php
+					$ugames = "SELECT g.gameName, g.gameID, g.gameStr FROM ugames u INNER JOIN games g on u.gameID = g.gameID WHERE u.username = '$username'";
+					$ugamesResults = $db->query($ugames);
+					if ($ugamesResults->num_rows > 0) {
+						while ($ugameRow = $ugamesResults->fetch_assoc()) {
+							$gameNameB = $ugameRow['gameName'];
+							$gameIdB = $ugameRow['gameID'];
+							$gameStrB = $ugameRow['gameStr'];
+							$randomAch = "SELECT * FROM uachievements WHERE gameID = '$gameIdB' and username = '$username' ORDER BY RAND() LIMIT 1";
+							$randomAchResults = $db->query($randomAch);
+							if ($randomAchResults->num_rows > 0) {
+								while ($randomAchRow = $randomAchResults->fetch_assoc()) {
+									$achStrB = $randomAchRow['achStr'];
+								}
+							} else {
+								$achStrB = 'default';
+							}
+							/* Figure out total number of achievements */
+							$totAchGame = "SELECT * FROM achievements WHERE gameID = '$gameIdB'";
+							$totAchResultsGame = $db->query($totAchGame);
+							$totalAchsGame = mysqli_num_rows($totAchResultsGame);
+							
+							/* figure out total number of bronze, silver, gold, and diamond achievements */
+							$totBronzeGame = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='bronze' AND a.achValue = u.progress AND a.gameID = '$gameIdB'";
+							$totBronzeResultsGame = $db->query($totBronzeGame);
+							$totalBronzesGame = mysqli_num_rows($totBronzeResultsGame);
+							
+							$totSilverGame = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='silver' AND a.achValue = u.progress AND a.gameID = '$gameIdB'";
+							$totSilverResultsGame = $db->query($totSilverGame);
+							$totalSilversGame = mysqli_num_rows($totSilverResultsGame);
+							
+							$totGoldGame = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='gold' AND a.achValue = u.progress AND a.gameID = '$gameIdB'";
+							$totGoldResultsGame = $db->query($totGoldGame);
+							$totalGoldsGame = mysqli_num_rows($totGoldResultsGame);
+							
+							$totDiamondGame = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='diamond' AND a.achValue = u.progress AND a.gameID = '$gameIdB'";
+							$totDiamondResultsGame = $db->query($totDiamondGame);
+							$totalDiamondsGame = mysqli_num_rows($totDiamondResultsGame);
+							
+							$totalAchievedGame = $totalDiamondsGame + $totalGoldsGame + $totalSilversGame + $totalBronzesGame;
+							$progressPercent = ($totalAchievedGame/$totalAchsGame) * 100;
+							if ($progressPercent < 1) {
+								$progressPercent = 1;
+							}
+							?> 
+							<div class="showcaseItem">
+								<div class="gameTop">
+									<div class="gamePic">
+										<img src="data/games/<?php echo $gameStrB?>.png" width="100px"> <!-- Game pic --> 
+									</div>
+									<table>
+										<tr>
+											<th style="text-align:left;">
+												<div style="font-size:30px">
+													<?php echo $gameNameB."<br>"; ?>
+												</div>
+											</th>
+											<td style="text-align:right;">
+												<div>
+													<div class="achieveCount">
+														<i class="fas fa-circle" style="color:#CD7F32"></i> <?php echo $totalBronzesGame?>
+														<i class="fas fa-circle" style="color:#D8D8D8"></i> <?php echo $totalSilversGame?>
+														<i class="fas fa-circle" style="color:#FFD700"></i> <?php echo $totalGoldsGame?> 
+														<i class="fas fa-circle" style="color:#00f6ff"></i> <?php echo $totalDiamondsGame?>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr><td><br></td></tr>
+										<tr>
+											<td style="text-align:center;" colspan="2">
+												Achievement Progress: <?php echo $totalAchievedGame."/".$totalAchsGame;?>
+													<div class="pBar">
+														<div class="pProgress" style="width:<?php echo $progressPercent?>%"></div><!-- Progress of all ach's here -->
+													</div>
+												
+											</td>
+										</tr>
+									</table>
+									<?php if ($achStrB == 'default') { ?>
+										<img src="data/achievements/no_ach/no_ach.png" height="50px"> <!-- Ach pic -->									
+									<?php } else { ?>
+										<img src="data/achievements/<?php echo $gameStrB?>/<?php echo $achStrB?>.png" height="50px"> <!-- Ach pic -->									
+									<?php } ?>
+								</div>
+							</div>
+						<?php }
+					} else { ?>
+						<div class="showcaseItem">
+							<div class="gameTop">
+								<div class="gamePic">
+									<img src="data/games/default.png" width="100px">
+								</div>
+								<table align="center" width="400px">
+									<tr>
+										<th style="text-align:center;">
+											<div style="font-size:30px">
+												No games <br>
+											</div>
+										</th>
+									</tr>
+									<tr><td><br></td></tr>
+									<tr>
+										<td style="text-align:center;" colspan="2">
+											Play games to unlock achievements!	
+										</td>
+									</tr>
+								</table>
+								<img src="data/achievements/no_ach/no_ach.png" height="50px"> <!-- Ach pic -->	
+							</div>
+						</div>
+					<?php }	?>
+				</span>
 			</div>
-			
 		</div>		
 	</div>
 	

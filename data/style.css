@@ -448,12 +448,7 @@ input[type="file"] {
 	display:flex;
 	justify-content: space-between;
 	padding:10px;
-}
-
-.gameBottom {
-	display:flex;
-	justify-content: space-between;
-	padding:10px;
+	align-items:center;
 }
 
 .achieveCount {
@@ -463,7 +458,7 @@ input[type="file"] {
 .pBar {
 	margin:5px;
 	background-color:grey;
-	width:700px;
+	width:700px;	/* 700px */
 	height:30px;
 	border-radius: 20px;
 }

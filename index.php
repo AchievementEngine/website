@@ -6,7 +6,6 @@
 	<link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 	<title>Achievement Engine</title>
-	<a href="profile.php" style="color:white;">Back to other website</a>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>	
 		$(document).ready(function() {
@@ -605,10 +604,10 @@
 			</div>
 			<div class="member-quote">
 				<i class="fas fa-quote-left"></i>
-				Workers of the world unite; you have nothing to lose but your chains.
+				Dyslexics of the world, untie!
 				<i class="fas fa-quote-right"></i>
 				<div class="member-quote-attri">
-					- Karl Marx
+					- Dyslexic Karl Marx
 				</div>
 			</div>
 		</div>
@@ -653,7 +652,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="contact dgrey" id="contact">
+	<div class="contact dgrey" id="contact" style="color:#d3d3d3">
 		<div class="developer">
 			<img src="data/teamae.png" height="50px" class="round glow-green">
 			<div class="developer-text">
