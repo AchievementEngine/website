@@ -94,7 +94,7 @@
 			<form method="post" action="search.php">
 				<div class="searchzone">
 					<input type="text" name="search" class="searchBox" placeholder="Search...">
-					<button style="font-family:FontAwesome"><i class="fas fa-search"></i></button>
+					<button style="font-family:FontAwesome;height:40px;width:40px;border-radius:10%"><i class="fas fa-search"></i></button>
 				</div>
 			</form>
 		</div>

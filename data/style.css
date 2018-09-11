@@ -224,12 +224,8 @@ header .farleft {
 }
 
 header .searchBox {
-	height:30px;
-	width:400px;
-	background-color:#36393e;
-	border:none;
-	margin:5px 15px 5px 50px;
-	padding:2px;
+	height:40px;
+	margin:0px 15px 0px 50px;
 	font-size:16pt;
 	color:white;
 	font-family:Open Sans;
@@ -392,7 +388,7 @@ input, label {
 input[type="text"] { 
 	border: 1px solid grey;
     border-radius: 5px;
-	padding: 5px 10px;
+	padding: 0px 10px;
 	width: 40%;
 	background-color:#2c2f33;
 }
@@ -751,9 +747,9 @@ a {
     font-size: 16px;
     border: none;
     cursor: pointer;
-	/*background-image: url("uploads/defaultProfile.png");*/
 	background-size: 100%;
     background-position: 45% 53%;
+	background-repeat: no-repeat;
     width: 40px;
     height: 40px;
     border-radius: 100%;
@@ -899,4 +895,57 @@ a {
    border-radius: 5px;
    background-color: black;
    color: #fff;
+}
+
+#myDIVheader {
+	color: white;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #424242;
+    margin-top: 20px;
+	font-size: 30px;
+}
+
+#locked {
+	color: white;
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: #424242;
+    margin-top: 20px;
+}
+
+#unlocked {
+	color: white;
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: #424242;
+    margin-top: 20px;
+}
+
+#buttons li a:hover {
+  text-decoration: none;
+  color: #000000;
+  background-color: #33B5E5;
+}
+
+.btn-group button {
+    background-color: #424242; /* Green background */
+    border: 1px solid black; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 90%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #1c211c;
 }

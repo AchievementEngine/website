@@ -47,12 +47,14 @@
 				<span onclick="openNav()"><img src="https://cdn3.iconfinder.com/data/icons/trico-circles-solid/24/Circle-Solid-List-512.png" height="40px"></span> 
 			</div>
 			<div class="left">
-				<a href="home.php"> <img src="data/AELogo2Light.png" height="40px">
+				<a href="home.php"> <img src="data/AELogo2Light.png" height="40px"></a>
 			</div>
-			<div class="searchzone">
-				<input type="text" name="search" class="searchBox" placeholder="Search...">
-				<i class="fas fa-search"></i>
-			</div>
+			<form method="post" action="search.php">
+				<div class="searchzone">
+					<input type="text" name="search" class="searchBox" placeholder="Search...">
+					<button style="font-family:FontAwesome;height:40px;width:40px;border-radius:10%"><i class="fas fa-search"></i></button>
+				</div>
+			</form>
 		</div>
 		<div class="right">
 			<div class="topLink">
