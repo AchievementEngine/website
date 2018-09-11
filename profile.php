@@ -48,7 +48,7 @@
 	/* Figure out total number of achievements */
 	$totAch = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achValue = u.progress";
 	$totAchResults = $db->query($totAch);
-	$totalAchs=mysqli_num_rows($totAchResults);
+	$totalAchs = mysqli_num_rows($totAchResults);
 	
 	/* figure out total number of bronze, silver, gold, and diamond achievements */
 	$totBronze = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID WHERE u.username='$username' AND a.achType='bronze' AND a.achValue = u.progress";

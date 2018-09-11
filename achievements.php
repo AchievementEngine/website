@@ -198,7 +198,7 @@
 				$('#unlocked').contents().filter(function() {
 					return this.nodeType == 3
 				}).each(function(){
-					this.textContent = this.textContent.replace('Unlocked:','All achievements unlocked!');
+					this.textContent = this.textContent.replace('Unlocked:','All achievements unlocked:');
 				});
 			<?php } ?>
 			

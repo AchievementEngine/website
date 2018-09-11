@@ -162,14 +162,25 @@
 			</form>
 			
 			<br><br><hr><br><br>		<!-- one hr as well -->
-			
+			<?php 
+				$query1 = "SELECT a.achName FROM users u JOIN achievements a ON a.achStr = u.featuredach WHERE username = '$username'";
+				$queryResults = $db->query($query1);
+				while ($queryRow = $queryResults->fetch_assoc()) {
+					$achStr = $queryRow['achName'];
+				}
+			?>
 			<form action="scripts/editAchievements.php" method="POST">
 				<div class="inputInfo">
 					<label>Featured Achievement</label>
 					<select name="achList" class="styled-select">
+						<option>No Achievement</option>
 						<?php foreach($achArray as $ach) { ?>
-							<option value="<?php echo $ach; ?>"><?php echo $ach; ?></option>
-						<?php } ?>
+							<?php if ($achStr == $ach) { ?>
+								<option value="<?php echo $ach; ?>" selected><?php echo $ach; ?></option>
+							<?php } else { ?>
+								<option value="<?php echo $ach; ?>"><?php echo $ach; ?></option>
+							<?php }
+						} ?>
 					</select>
 				</div>
 				<div class="inputInfo">
