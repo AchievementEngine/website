@@ -65,7 +65,7 @@
 				<div id="myDropdown" class="dropdown-content">
 					<a href="profile.php">My Profile</a>
 					<a href="editProfile.php">Edit Profile</a>
-					<a href="logout.php">Log Out</a>
+					<a href="scripts/logout.php">Log Out</a>
 				</div>
 			</div>
 		</div>
