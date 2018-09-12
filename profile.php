@@ -1,4 +1,5 @@
 <?php 
+	session_start();
 	include_once "scripts/connect.php";
 
 	if(!isset($_SESSION)) { 

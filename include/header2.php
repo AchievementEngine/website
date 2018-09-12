@@ -19,23 +19,22 @@
 				$username1 = $_SESSION['username'];
 				$friendNotifQuery = "SELECT * FROM friendRequest WHERE user2 = '$username1'";
 				$friendNotifResults = $db->query($friendNotifQuery);
-				if ($friendNotifResults->num_rows > 0) {
-					echo "<button onclick='myFunction2()' class='dropbtn' style='background-image: url(data/notification_active.png)'></button>";
-				} else {
+				if (!$friendNotifResults) {
 					echo "<button onclick='myFunction2()' class='dropbtn' style='background-image: url(data/notification.png)'></button>";
-				}
-			?>
-			<div id="notifDropdown" class="dropdown-content">
-				<div>
-					<?php
-						while ($friendNotifRow = $friendNotifResults->fetch_assoc()) {
-							$userAdding = $friendNotifRow['user1'];
-							echo "<a href='scripts/friends.php?usernameGET=".$userAdding."&friendNotifGET=true'>Accept ".$userAdding."</a>";
-						}
-					?>
-				</div>
-				<p style="padding:15px"> No Notifications </p>
-			</div>
+				} else {
+					echo "<button onclick='myFunction2()' class='dropbtn' style='background-image: url(data/notification_active.png)'></button>"; ?>
+					<div id="notifDropdown" class="dropdown-content">
+						<div>
+							<?php
+								while ($friendNotifRow = $friendNotifResults->fetch_assoc()) {
+									$userAdding = $friendNotifRow['user1'];
+									echo "<a href='scripts/friends.php?usernameGET=".$userAdding."&friendNotifGET=true'>Accept ".$userAdding."</a>";
+								}
+							?>
+						</div>
+						<p style="padding:15px"> No Notifications </p>
+					</div>
+				<?php }?>
 		</div>
 		
 		<div class="dropdown">
