@@ -1,8 +1,9 @@
 <?php 
 	include_once "scripts/connect.php";
-	//include "scripts/profileDisplay.php";
 
-	session_start();
+	if(!isset($_SESSION)) { 
+        session_start(); 
+    }
 
 	if(!isset($_SESSION['username'])) {
 		header("location: login.php");
@@ -84,48 +85,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="icon" href="data/teamae.png">
-	<link rel="stylesheet" type="text/css" href="data/style.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+	<?php include ('include/header.php'); ?>
 	<title>Profile</title>
 </head>
 <body>
-	<div id="mySidenav" class="sidenav">
-	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	  <a href="achievements.php">My Achievements</a>
-	  <a href="index.php">About</a>
-	</div>
-	
-	<header>
-		<div class="left headLeft">
-			<div class="farleft">
-				<span onclick="openNav()"><img src="https://cdn3.iconfinder.com/data/icons/trico-circles-solid/24/Circle-Solid-List-512.png" height="40px"></span> 
-			</div>
-			<div class="left">
-				<a href="home.php"> <img src="data/AELogo2Light.png" height="40px"></a>
-			</div>
-			<form method="post" action="search.php">
-				<div class="searchzone">
-					<input type="text" name="search" class="searchBox" placeholder="Search...">
-					<button style="font-family:FontAwesome;height:40px;width:40px;border-radius:10%"><i class="fas fa-search"></i></button>
-				</div>
-			</form>
-		</div>
-		<div class="right">
-			<div class="topLink">
-				<a href="liveAchievement.php"><i class="fas fa-gamepad"></i></a>
-			</div>
-			<div class="dropdown">
-				<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$_SESSION['username'].".png)'></button> "?>
-				<div id="myDropdown" class="dropdown-content">
-					<a href="profile.php">My Profile</a>
-					<a href="editProfile.php">Edit Profile</a>
-					<a href="scripts/logout.php">Log Out</a>
-				</div>
-			</div>
-		</div>
-	</header>
+	<?php include ('include/sideNav.php'); ?>
+	<?php include ('include/header2.php'); ?>
 	
 	<div class="body">
 		<div class="profilePic">
@@ -135,13 +100,41 @@
 		<div class="content">
 			<div class="topInfo">
 				<div class="username"><?= $dispName." "; ?></div><!-- User selected badge here -->
-				<div class="achOverview">
-					<i class="fas fa-circle" style="color:#CD7F32"></i> <?= $totalBronzes ?><!-- Bronze num of ach here --> 
-					<i class="fas fa-circle" style="color:#D8D8D8"></i> <?= $totalSilvers ?><!-- Silver num of ach here --> 
-					<i class="fas fa-circle" style="color:#FFD700"></i> <?= $totalGolds ?><!-- Gold num of ach here --> 
-					<i class="fas fa-circle" style="color:#00F6FF"></i> <?= $totalDiamonds ?><!-- Platinum num of ach here -->
-				</div>
+				<table width='100%'>
+					<tr>
+						<td style="text-align:left;">
+							<div class="achOverview">
+								<i class="fas fa-circle" style="color:#CD7F32"></i> <?= $totalBronzes ?><!-- Bronze num of ach here --> 
+								<i class="fas fa-circle" style="color:#D8D8D8"></i> <?= $totalSilvers ?><!-- Silver num of ach here --> 
+								<i class="fas fa-circle" style="color:#FFD700"></i> <?= $totalGolds ?><!-- Gold num of ach here --> 
+								<i class="fas fa-circle" style="color:#00F6FF"></i> <?= $totalDiamonds ?><!-- Platinum num of ach here -->
+							</div>
+						</td>
+						<td style="float:right">
+							<div>
+								<?php
+								if(isset($_GET['username']) && $_GET['username'] != $_SESSION['username']) {
+									$username1 = $_SESSION['username'];
+									$username2 = $_GET['username'];
+									$friendQuery = "SELECT * FROM friends WHERE (user1 = '$username1' AND user2 = '$username2') OR (user1 = '$username2' AND user2 = '$username1')";
+									$friendResults = $db->query($friendQuery);
+									if (mysqli_num_rows($friendResults) == 0) {
+										$friendsB = false;
+									} else {
+										$friendsB = true;
+									}
+									if (!$friendsB) {
+										$friendRequest = true;
+										echo "<a href='scripts/friends.php?usernameGET=".$username2."&friendReqGET=".$friendRequest."' class='button'>Add Friend</a>";
+									}
+								}
+								?>
+							</div>
+						</td>
+					</tr>
+				</table>
 			</div>
+			
 			<div class="moreInfo">
 				<span class="sideBar">
 					<div class="featuredAch">
@@ -193,12 +186,6 @@
 								<td class="tabIcon"><i class="fas fa-trophy"></i></td>
 								<td>
 									<?= $totalAchs; ?> Achievements<!-- total num of ach here -->
-								</td>
-							</tr>
-							<tr>
-								<td class="tabIcon"><i class="fas fa-gamepad"></i></td>
-								<td class="ingame">
-									Fortnite<!-- Currently playing here -->
 								</td>
 							</tr>
 						</table>
@@ -322,97 +309,8 @@
 		</div>		
 	</div>
 	
-	<div class="imdown">
-			<button onclick="showIM()" class="imbtn"></button>
-			 <div id="im" class="im-content">
-				<div class="friend">
-					<div class="friendPic">
-						<img src="data/defaultpp.png" height="40px">
-					</div>
-					<div class="friendInfo">
-						<div class="friendName">
-							Dave
-						</div>
-						<div class="friendStatus ingame">
-							CS:GO
-						</div>
-					</div>
-				</div>
-				<div class="friend">
-					<div class="friendPic">
-						<img src="data/defaultpp.png" height="40px">
-					</div>
-					<div class="friendInfo">
-						<div class="friendName">
-							Trev
-						</div>
-						<div class="friendStatus ingame">
-							Fortnite
-						</div>
-					</div>
-				</div>
-				<div class="friend">
-					<div class="friendPic">
-						<img src="data/defaultpp.png" height="40px">
-					</div>
-					<div class="friendInfo">
-						<div class="friendName">
-							Rod
-						</div>
-						<div class="friendStatus away">
-							Away
-						</div>
-					</div>
-				</div>
-			 </div>
-		</div>
-	</div>
+	<?php include ('include/friendFooter.php'); ?>
 </body>
+<?php include ('include/profileDropdown.php'); ?>
 
-<script>
-/* Set the width of the side navigation to 250px */
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
-
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
-
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function showIM() {
-    document.getElementById("im").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-	if (!event.target.matches('.dropbtn')) {
-		var dropdowns = document.getElementsByClassName("dropdown-content");
-		var i;
-		for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');
-			}
-		}
-	}
-	if (!event.target.matches('.imbtn')) {
-		var dropdowns = document.getElementsByClassName("im-content");
-		var i;
-		for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');
-			}
-		}
-	}
-}
-
-</script>
 </html>
