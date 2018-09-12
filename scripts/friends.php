@@ -16,9 +16,15 @@
 		if (isset($_GET['friendNotifGET'])) {
 			$friendApproved = "INSERT INTO friends (user1, user2) VALUES ('$username1', '$username2')";
 			$friendApproved2 = "DELETE FROM friendrequest WHERE user2 = '$username1' AND user1 = '$username2'";
-			$result = $db->query($friendApproved);
-			$result2 = $db->query($friendApproved2);
+			$result2 = $db->query($friendApproved);
+			$result3 = $db->query($friendApproved2);
 			header("location: ../profile.php");
+		}
+		
+		if (isset($_GET['unfriendGET'])) {
+			$friendDelete = "DELETE FROM friends WHERE (user1 = '$username1' AND user2 = '$username2') OR (user2 = '$username1' AND user1 = '$username2')";
+			$result4 = $db->query($friendDelete);
+			header("location: ../profile.php?username=$username2");
 		}
 	}
 ?>

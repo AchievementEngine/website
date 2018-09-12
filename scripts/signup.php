@@ -13,6 +13,7 @@ if (isset($_POST['reg_user'])) {
 
 	// form validation: ensure that the form is correctly filled ...
 	if ($password_1 != $password_2) {
+		$errors++;
 		$pass_error = "The two passwords do not match";
 	}
 

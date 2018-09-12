@@ -121,13 +121,35 @@
 									$friendResults = $db->query($friendQuery);
 									if (mysqli_num_rows($friendResults) == 0) {
 										$friendsB = false;
-									} else {
+									} else {	//if they are friends
 										$friendsB = true;
-									}
-									if (!$friendsB) {
+										?>
+										<div class="navbarb">
+											<div class="dropdownb">
+												<button class="dropbtnb">Friends 
+													<i class="fa fa-caret-down"></i>
+												</button>
+												<div class="dropdownb-content">
+													<?php 
+														echo "<a href='scripts/friends.php?usernameGET=".$username2."&unfriendGET=unfriend' style='text-align:center' class='button'>Unfriend</a>";
+													?>
+												</div>
+											</div> 
+										</div>
+									<?php }
+									
+									$friendReqQuery = "SELECT * FROM friendrequest WHERE user1 = '$username1' AND user2 = '$username2'";
+									$friendAddedQuery = "SELECT * FROM friendrequest WHERE user2 = '$username1' AND user1 = '$username2'";
+									$friendReqResults = $db->query($friendReqQuery);
+									$friendAddedResults = $db->query($friendAddedQuery);
+									if (mysqli_num_rows($friendReqResults) != 0) {
+										echo "<button class='button'>Friend Request Sent</button>";
+									} else if (mysqli_num_rows($friendAddedResults) == 1) {
+										echo "<button class='button'>User has added you</button>";
+									} else if (!$friendsB) {
 										$friendRequest = true;
 										echo "<a href='scripts/friends.php?usernameGET=".$username2."&friendReqGET=".$friendRequest."' class='button'>Add Friend</a>";
-									}
+									} 
 								}
 								?>
 							</div>

@@ -75,6 +75,16 @@
 				</div>
 			<?php endif ?>	
 			
+			<?php  if (isset($_SESSION['email_error'])) : ?>
+				<div>
+					<p style="padding-left: 200px; color: red; font-size: 15pt">
+						<?php 
+							echo $_SESSION['email_error']; 
+							unset($_SESSION['email_error']);
+						?>
+					</p>
+				</div>
+			<?php endif ?>	
 			<form action="scripts/editProfile.php" method="post">
 				<div class="inputInfo">
 					<label>Display Name</label>

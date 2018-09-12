@@ -177,11 +177,9 @@
 						$achValue = $queryRow['achValue'];
 					}
 					
-					#echo $game.'<br>';
 					echo $d.'&emsp;&emsp;Progress: '.$progress.'/'.$achValue.'<br>';
 					$progressPercent = ($progress/$achValue) * 100;
-					//echo $progress.'<br>';
-					//echo $achValue.'<br>';
+		
 					echo "<div class='achievement-progress'>";
 						echo "<div class='pBar' style='width:30%; height:20px; border-radius: 10px;  margin:0 auto;'>";
 							echo "<div class='pProgress' style='width:".$progressPercent."%; height:10px; border-radius: 10px;'>".$progressPercent."%</div>";
