@@ -117,16 +117,44 @@
 								if(isset($_GET['username']) && $_GET['username'] != $_SESSION['username']) {
 									$username1 = $_SESSION['username'];
 									$username2 = $_GET['username'];
+									
+									$userAdmin1 = "SELECT * FROM users WHERE username = '$username1'";
+									$userAdmin2 = "SELECT * FROM users WHERE username = '$username2'";
+									$admin1Results = $db->query($userAdmin1);
+									$admin2Results = $db->query($userAdmin2);
+									while ($admin1Row = $admin1Results->fetch_assoc()) {
+										$admin1 = $admin1Row['admin'];
+									} 
+									while ($admin2Row = $admin2Results->fetch_assoc()) {
+										$admin2 = $admin2Row['admin'];
+									} 
+									
+									//admin can only delete non or lesser admin (null is assumed to be 0 in php)
+									if ($admin1 > $admin2) { ?>	
+										<div class="navbarb" style="display:inline;">
+											<div class="dropdownb" style="margin: 5px;">
+												<button class="dropbtnb">Delete User 
+													<i class="fa fa-caret-down"></i>
+												</button>
+												<div class="dropdownb-content">
+													<?php 
+														echo "<a href='scripts/deleteUser.php?deleteUser=".$username2."' style='text-align:center' class='button'>Delete (dont click)</a>";
+													?>
+												</div>
+											</div>
+										</div>
+									<?php } 
+									
 									$friendQuery = "SELECT * FROM friends WHERE (user1 = '$username1' AND user2 = '$username2') OR (user1 = '$username2' AND user2 = '$username1')";
 									$friendResults = $db->query($friendQuery);
 									if (mysqli_num_rows($friendResults) == 0) {
 										$friendsB = false;
 									} else {	//if they are friends
 										$friendsB = true;
-										?>
-										<div class="navbarb">
-											<div class="dropdownb">
-												<button class="dropbtnb">Friends 
+									?>
+										<div class="navbarb" style="display:inline">
+											<div class="dropdownb" style="margin: 5px;">
+												<button class="dropbtnb">Friends
 													<i class="fa fa-caret-down"></i>
 												</button>
 												<div class="dropdownb-content">
