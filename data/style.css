@@ -177,7 +177,7 @@ body, html{
 
 header {
 	width:100%-400;
-	padding:10px 200px 10px 200px;
+	padding:10px 20% 10px 20%;
 	height:40px;
 	background-color: #36393e;
 	color:white;
@@ -514,7 +514,7 @@ a {
 	width: 60%;
 	background: ##36393e;
 	overflow-y: scroll;
-	margin: 25px 20% 0 20%;
+	margin: 25px 17.5% 0 20%;
 }
 
 .scrollbar ul{
