@@ -5,7 +5,7 @@
 	$username1 = $_SESSION['username'];
 	
 	if(isset($_GET['usernameGET'])) {
-		$username2 = $_GET['usernameGET'];
+		$username2 = $_GET['usernameGET']; 
 		
 		//send friend request
 		if (isset($_GET['friendReqGET'])) {
@@ -36,7 +36,7 @@
 		}
 		
 		if (isset($_GET['cancelRequest'])) {
-			$friendReqCancel = "DELETE FROM friendrequest WHERE (user1 = '$username1' AND user2 = '$username2') OR (user2 = '$username1' AND user1 = '$username2')";
+			$friendReqCancel = "DELETE FROM friendrequest WHERE user1 = '$username1' AND user2 = '$username2'";
 			$result6 = $db->query($friendReqCancel);
 			header("location: ../profile.php?username=$username2");
 		}

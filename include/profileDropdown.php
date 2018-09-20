@@ -20,6 +20,18 @@ function myFunction2() {
     document.getElementById("notifDropdown").classList.toggle("show");
 }
 
+function myFunction3() {
+    document.getElementById("deleteUser").classList.toggle("show");
+}
+
+function myFunction4() {
+    document.getElementById("friends").classList.toggle("show");
+}
+
+function myFunction5() {
+    document.getElementById("requestSent").classList.toggle("show");
+}
+
 function showIM() {
     document.getElementById("im").classList.toggle("show");
 }

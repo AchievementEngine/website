@@ -17,7 +17,7 @@
 		<div class="dropdown" style="padding-right:7px;">
 			<?php
 				$username1 = $_SESSION['username'];
-				$friendNotifQuery = "SELECT * FROM friendRequest WHERE user2 = '$username1'";
+				$friendNotifQuery = "SELECT * FROM friendrequest WHERE user2 = '$username1'";
 				$friendNotifResults = $db->query($friendNotifQuery);
 				if (mysqli_num_rows($friendNotifResults) == 0) {
 					echo "<button onclick='myFunction2()' class='dropbtn' style='background-image: url(data/notification.png)'></button>"; ?>

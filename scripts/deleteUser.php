@@ -17,15 +17,17 @@
 			$admin2 = $admin2Row['admin'];
 		} 
 		if ($admin1 > $admin2) { 		
-			$deleteUser1 = "DELETE FROM ugames WHERE username = '$username'";
-			$deleteUser2 = "DELETE FROM uachievements WHERE username = '$username'";
-			$deleteUser3 = "DELETE FROM friends WHERE user1 = '$username' OR user2 = '$username'";
-			$deleteUser4 = "DELETE FROM users WHERE username = '$username'";
+			$deleteUser1 = "DELETE FROM ugames WHERE username = '$username2'";
+			$deleteUser2 = "DELETE FROM uachievements WHERE username = '$username2'";
+			$deleteUser3 = "DELETE FROM friendrequest WHERE user1 = '$username2' OR user2 = '$username2'";
+			$deleteUser4 = "DELETE FROM friends WHERE user1 = '$username2' OR user2 = '$username2'";
+			$deleteUser5 = "DELETE FROM users WHERE username = '$username2'";
 			
 			$db->query($deleteUser1);
 			$db->query($deleteUser2);
 			$db->query($deleteUser3);
 			$db->query($deleteUser4);
+			$db->query($deleteUser5);
 		}
 	}
 	header("location: ../profile.php");

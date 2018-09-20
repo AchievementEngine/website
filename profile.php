@@ -131,16 +131,10 @@
 									
 									//admin can only delete non or lesser admin (null is assumed to be 0 in php)
 									if ($admin1 > $admin2) { ?>	
-										<div class="navbarb" style="display:inline;">
-											<div class="dropdownb" style="margin: 5px;">
-												<button class="dropbtnb">Delete User 
-													<i class="fa fa-caret-down"></i>
-												</button>
-												<div class="dropdownb-content">
-													<?php 
-														echo "<a href='scripts/deleteUser.php?deleteUser=".$username2."' style='text-align:center' class='button'>Delete (dont click)</a>";
-													?>
-												</div>
+										<div class="dropdown" style="padding-right:7px;">
+											<button onclick='myFunction3()' class='dropbtn' style='width:150px; height:50px; border-radius:0; background-color:#555555'>Delete User</button>
+											<div id="deleteUser" class="dropdown-content">
+												<a href='scripts/deleteUser.php?deleteUser=<?=$username2?>' style='text-align:center' class='button'>Delete (dont click)</a>
 											</div>
 										</div>
 									<?php } 
@@ -152,17 +146,11 @@
 									} else {	//if they are friends
 										$friendsB = true;
 									?>
-										<div class="navbarb" style="display:inline">
-											<div class="dropdownb" style="margin: 5px;">
-												<button class="dropbtnb">Friends
-													<i class="fa fa-caret-down"></i>
-												</button>
-												<div class="dropdownb-content">
-													<?php 
-														echo "<a href='scripts/friends.php?usernameGET=".$username2."&unfriendGET=unfriend' style='text-align:center' class='button'>Unfriend</a>";
-													?>
-												</div>
-											</div> 
+										<div class="dropdown" style="padding-right:7px;">
+											<button onclick='myFunction4()' class='dropbtn' style='width:150px; height:50px; border-radius:0; background-color:#555555'>Friends</button>
+											<div id="friends" class="dropdown-content">
+												<a href='scripts/friends.php?usernameGET=<?=$username2?>&unfriendGET=unfriend' style='text-align:center' class='button'>Unfriend</a>
+											</div>
 										</div>
 									<?php }
 									
@@ -171,17 +159,11 @@
 									$friendReqResults = $db->query($friendReqQuery);
 									$friendAddedResults = $db->query($friendAddedQuery);
 									if (mysqli_num_rows($friendReqResults) != 0) { ?>
-										<div class="navbarb" style="display:inline">
-											<div class="dropdownb" style="margin: 5px;">
-												<button class="dropbtnb">Friend Request Sent
-													<i class="fa fa-caret-down"></i>
-												</button>
-												<div class="dropdownb-content">
-													<?php 
-														echo "<a href='scripts/friends.php?usernameGET=".$username2."&cancelRequest=true' style='text-align:center' class='button'>Cancel Request</a>";
-													?>
-												</div>
-											</div> 
+										<div class="dropdown" style="padding-right:7px;">
+											<button onclick='myFunction5()' class='dropbtn' style='width:200px; height:50px; border-radius:0; background-color:#555555'>Friend Request Sent</button>
+											<div id="requestSent" class="dropdown-content">
+												<a href='scripts/friends.php?usernameGET=<?=$username2?>&cancelRequest=true' style='text-align:center' class='button'>Cancel Request</a>
+											</div>
 										</div>
 									<?php
 									} else if (mysqli_num_rows($friendAddedResults) == 1) {
