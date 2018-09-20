@@ -170,13 +170,24 @@
 									$friendAddedQuery = "SELECT * FROM friendrequest WHERE user2 = '$username1' AND user1 = '$username2'";
 									$friendReqResults = $db->query($friendReqQuery);
 									$friendAddedResults = $db->query($friendAddedQuery);
-									if (mysqli_num_rows($friendReqResults) != 0) {
-										echo "<button class='button'>Friend Request Sent</button>";
+									if (mysqli_num_rows($friendReqResults) != 0) { ?>
+										<div class="navbarb" style="display:inline">
+											<div class="dropdownb" style="margin: 5px;">
+												<button class="dropbtnb">Friend Request Sent
+													<i class="fa fa-caret-down"></i>
+												</button>
+												<div class="dropdownb-content">
+													<?php 
+														echo "<a href='scripts/friends.php?usernameGET=".$username2."&cancelRequest=true' style='text-align:center' class='button'>Cancel Request</a>";
+													?>
+												</div>
+											</div> 
+										</div>
+									<?php
 									} else if (mysqli_num_rows($friendAddedResults) == 1) {
 										echo "<button class='button'>User has added you</button>";
 									} else if (!$friendsB) {
-										$friendRequest = true;
-										echo "<a href='scripts/friends.php?usernameGET=".$username2."&friendReqGET=".$friendRequest."' class='button'>Add Friend</a>";
+										echo "<a href='scripts/friends.php?usernameGET=".$username2."&friendReqGET=true' class='button'>Add Friend</a>";
 									} 
 								}
 								?>

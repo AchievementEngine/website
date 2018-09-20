@@ -35,6 +35,12 @@
 			header("location: ../profile.php?username=$username2");
 		}
 		
+		if (isset($_GET['cancelRequest'])) {
+			$friendReqCancel = "DELETE FROM friendrequest WHERE (user1 = '$username1' AND user2 = '$username2') OR (user2 = '$username1' AND user1 = '$username2')";
+			$result6 = $db->query($friendReqCancel);
+			header("location: ../profile.php?username=$username2");
+		}
+		
 	} else {
 		header("location: ../profile.php");
 	}

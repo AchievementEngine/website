@@ -118,7 +118,7 @@
 
 <script>
 	<?php foreach($gameNameAndAchs as $game => $ach) { 
-		$games = "select * from games where gameName = '$game'";
+		$games = "SELECT * FROM games WHERE gameName = '$game'";
 		$gameResults = $db->query($games);
 		$gameRow = $gameResults->fetch_array(MYSQLI_ASSOC);
 		$gameStr = $gameRow['gameStr'];
@@ -135,8 +135,18 @@
 			document.getElementById("unlocked").innerHTML = "<?php 
 				echo 'Unlocked:';
 				echo '<br><br>';
-				foreach($ach as $c => $d) {
-					echo $d.'<br>';
+				foreach($ach as $c => $achName) {
+					$achQ = "SELECT * FROM games g JOIN achievements a ON a.gameID = g.gameID WHERE gameName = '$game' AND achName = '$achName'";
+					$achR = $db->query($achQ);
+					while ($achRow = $achR->fetch_assoc()) {
+						$achStr = $achRow['achStr'];
+						$achDesc = $achRow['achDesc'];
+						$achPic = "data/achievements/".$gameStr."/".$achStr.".png";
+						echo "<img src=".$achPic." height='70px'>";
+						echo $achName."&emsp;&emsp;&emsp;";
+						echo $achDesc."&emsp;&emsp;&emsp;";
+						echo "<br><br>";
+					}
 				}	
 			?>";
 			<?php echo $gameStr."_Locked"; ?>();	//call function to print locked achievements
@@ -169,17 +179,23 @@
 			
 			document.getElementById("locked").innerHTML = "<?php 
 				echo 'Locked:<br><br>';
-				foreach($ach as $c => $d) {	//c is array index (0, 1, etc), d is the achievement name
-					$query = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID INNER JOIN games g ON a.gameID = g.gameID WHERE u.username='$username' AND g.gameName = '$game' AND a.achName = '$d'";
+				foreach($ach as $c => $achName) {	//c is array index (0, 1, etc), d is the achievement name
+					$query = "SELECT * FROM uachievements u INNER JOIN achievements a ON u.achStr = a.achStr AND u.gameID = a.gameID INNER JOIN games g ON a.gameID = g.gameID WHERE u.username='$username' AND g.gameName = '$game' AND a.achName = '$achName'";
 					$queryResults = $db->query($query);
 					while ($queryRow = $queryResults->fetch_assoc()) {
 						$progress = $queryRow['progress'];
 						$achValue = $queryRow['achValue'];
+						$achDesc = $queryRow['achDesc'];
+						$achStr = $queryRow['achStr'];
+						$gameStr = $queryRow['gameStr'];
 					}
-					
-					echo $d.'&emsp;&emsp;Progress: '.$progress.'/'.$achValue.'<br>';
+					$achPic = "data/achievements/".$gameStr."/".$achStr.".png";
+					echo "<img src=".$achPic." height='70px'> <br>";
+					echo $achName."&emsp;&emsp;&emsp;";
+					echo $achDesc."&emsp;&emsp;&emsp;";
+					echo "Progress: ".$progress."/".$achValue."<br>";
 					$progressPercent = ($progress/$achValue) * 100;
-		
+					
 					echo "<div class='achievement-progress'>";
 						echo "<div class='pBar' style='width:30%; height:20px; border-radius: 10px;  margin:0 auto;'>";
 							echo "<div class='pProgress' style='width:".$progressPercent."%; height:10px; border-radius: 10px;'>".$progressPercent."%</div>";
