@@ -181,7 +181,7 @@
 			
 			<div class="moreInfo">
 				<span class="sideBar">
-					<div class="featuredAch">
+					<div class="featuredAch" style="width:250px">
 						<?php echo "<img src='data/achievements/".$gameStr."/".$featuredAch.".png' height='70px'>"; ?> <!-- Pic of featured ach here -->
 						<div class="featureInfo">
 							<div class="featureName">
@@ -206,7 +206,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="personal">
+					<div class="personal" style="width:250px">
 						<table>
 							<tr>
 								<td class="tabIcon"><i class="fas fa-map-marker"></i></td>

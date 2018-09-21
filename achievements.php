@@ -44,44 +44,54 @@
 	<?php include ('include/sideNav.php'); ?>
 	<?php include ('include/header2.php'); ?>
 	
-	<div class="gameScroll">
-		<div class="scrollbar" id="style-1">
-			<div class="btn-group">
-				<?php foreach($userGames as $gameID) { 
-					$games = "SELECT * FROM games WHERE gameID = '$gameID'";
-					$gameResults = $db->query($games);
-					$gameRow = $gameResults->fetch_array(MYSQLI_ASSOC);
-					$gameStr = $gameRow['gameStr'];
-					$gameName = $gameRow['gameName'];
-					//echo "test";
-					echo "<button onclick='$gameStr()' id='$gameName'>$gameName</button>"; 
-				} ?>
+	<div class = "body">
+		<div class="content">
+			<div class="moreInfo">
+				<span class="sideBar">
+					<div class="gameScroll">
+						<div class="scrollbar" id="style-1">
+							<div class="btn-group">
+								<?php foreach($userGames as $gameID) { 
+									$games = "SELECT * FROM games WHERE gameID = '$gameID'";
+									$gameResults = $db->query($games);
+									$gameRow = $gameResults->fetch_array(MYSQLI_ASSOC);
+									$gameStr = $gameRow['gameStr'];
+									$gameName = $gameRow['gameName'];
+									//echo "test";
+									echo "<button onclick='$gameStr()' id='$gameName'>$gameName</button>"; 
+								} ?>
+							</div>
+							
+							<div class="force-overflow"></div>
+						</div>
+					</div>
+				</span>
+				<span class="showcase" style="width:82.5%">
+					<div class="activeZone">
+						<div class="scrollbar-2" id="style-2">
+							<center>
+								<br>
+								<div id="myDIVheader">
+									<?php if ($gamesExist == true) {
+										echo "Select a game to see your achievements";
+									} else {
+										echo "You do not have any games";
+									} ?>
+								</div>
+								<div id="unlocked" style="display: none;">		<!-- hidden until a game button is clicked. Displays unlocked achievements -->
+									
+								</div>	
+								<div id="locked" style="display: none;">		<!-- Same ^^. Displays locked achievements -->
+								
+								</div>
+								<div class="force-overflow"></div>
+							</center>
+						</div>
+					</div>
+				</span>
 			</div>
-			
-			<div class="force-overflow"></div>
 		</div>
-	</div>
-	<div class="activeZone">
-		<div class="scrollbar-2" id="style-2">
-			<center>
-				<br>
-				<div id="myDIVheader">
-					<?php if ($gamesExist == true) {
-						echo "Select a game to see your achievements";
-					} else {
-						echo "You do not have any games";
-					} ?>
-				</div>
-				<div id="unlocked" style="display: none;">		<!-- hidden until a game button is clicked. Displays unlocked achievements -->
-					
-				</div>	
-				<div id="locked" style="display: none;">		<!-- Same ^^. Displays locked achievements -->
-				
-				</div>
-    			<div class="force-overflow"></div>
-    		</center>
-		</div>
-	</div>	
+	</div>				
 	<?php include ('include/friendFooter.php'); ?>
 </body>
 
@@ -113,23 +123,48 @@
 				$achDesc = $achRow['achDesc'];
 				$achStr = $achRow['achStr'];
 				$achPic = "data/achievements/".$gameStr."/".$achStr.".png";
+				$achType = $achRow['achType'];
+				
+			if($achType == "bronze") {
+				$achColour = "class=fas fa-circle style=color:#CD7F32";
+			} else if($achType == "silver") {
+				$achColour = "class=fas fa-circle style=color:#D8D8D8";
+			} else if($achType == "gold") {
+				$achColour = "class=fas fa-circle style=color:#FFD700";
+			} else if($achType == "diamond") {
+				$achColour = "class=fas fa-circle style=color:#00F6FF";
+			} else if($achType == "nil") {
+				$achColour = "class=fas fa-circle style=color:#000000";
+			}
 				?>
 				header.innerHTML = "<?=$gameName?> ";
 				
-				unlocked.innerHTML += 						
-					"<div>" +
-						"<img src='<?=$achPic?>' height='70px'>" +			//this is the image
-					"</div>" +
-					
-					"<div>" +
-						"<?=$achName?>" +									//this is the name of the achievmeent
-					"</div>" +
-					
-					"<div>" +
-						"<?=$achDesc?>" +									//this is the description of the achievement
-					"</div>" +
-					
-					"<br>";
+				unlocked.innerHTML += 	
+				
+					"<div class = featuredAch>"+
+						"<img src='<?=$achPic?>' height='70px'>" +
+						"<div class = featureInfo>"+
+							"<div class = featureName>"+
+								"<?php
+								if($achType == "bronze") {
+									echo "<i class='fas fa-circle' style='color:#CD7F32'></i>";
+								} else if($achType == "silver") {
+									echo "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
+								} else if($achType == "gold") {
+									echo "<i class='fas fa-circle' style='color:#FFD700'></i>";
+								} else if($achType == "diamond") {
+									echo "<i class='fas fa-circle' style='color:#00F6FF'></i>";
+								} else if($achType == "nil") {
+									echo "<i class='fas fa-circle' style='color:#000000'></i>";
+								}
+								?>"+
+								" <?=$achName?>" +
+							"</div>"+
+							"<div style=padding:5px 5px 5px 20px;>"+
+								"<?=$achDesc?>" +
+							"</div>"+
+						"</div>"+
+					"</div>";
 				
 			<?php
 			}
@@ -142,19 +177,31 @@
 				$lockedPic = "data/achievements/".$gameStr."/".$lockedStr.".png";
 				?>
 				locked.innerHTML += 					
-					"<div>" +
-						"<img src='<?=$lockedPic?>' height='70px'>" +			//this is the image
-					"</div>" +
 					
-					"<div>" +
-						"<?=$lockedName?>" +									//this is the name of the achievmeent
-					"</div>" +
-					
-					"<div>" +
-						"<?=$lockedDesc?>" +									//this is the description of the achievement
-					"</div>" +
-					
-					"<br>";
+					"<div class = featuredAch>"+
+						"<img src='<?=$lockedPic?>' height='70px'>" +
+						"<div class = featureInfo>"+
+							"<div class = featureName>"+
+								"<?php
+								if($achType == "bronze") {
+									echo "<i class='fas fa-circle' style='color:#CD7F32'></i>";
+								} else if($achType == "silver") {
+									echo "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
+								} else if($achType == "gold") {
+									echo "<i class='fas fa-circle' style='color:#FFD700'></i>";
+								} else if($achType == "diamond") {
+									echo "<i class='fas fa-circle' style='color:#00F6FF'></i>";
+								} else if($achType == "nil") {
+									echo "<i class='fas fa-circle' style='color:#000000'></i>";
+								}
+								?>"+
+								" <?=$lockedName?>" +
+							"</div>"+
+							"<div style=padding:5px 5px 5px 20px;>"+
+								"<?=$lockedDesc?>" +
+							"</div>"+
+						"</div>"+
+					"</div>";
 				
 			<?php }	?>	
 		}

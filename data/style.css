@@ -335,7 +335,7 @@ header .headLeft {
 
 .sideBar > div {
 	background-color:#2f3136;
-	width:250px;
+	width:12.5%;
 	margin:5px;
 	padding:5px;
 }
@@ -502,19 +502,16 @@ a {
 {
 	float: left;
 	height: 100%;
-	width: 250px;
+	width: 100%;
 	overflow-y: scroll;
-	margin: 35px 0 0 10%;
 }
 
 .scrollbar-2
 {
-	float: left;
 	height: 100%;
-	width: 60%;
+	width: 100%;
 	background: ##36393e;
 	overflow-y: scroll;
-	margin: 25px 17.5% 0 20%;
 }
 
 .scrollbar ul{
@@ -823,7 +820,7 @@ a {
 
 /* The container <div> - needed to position the dropdown content */
 .imdown {
-    position: absolute;
+    position: fixed;
 	bottom:15px;
     right:15px;
     display: inline-block;
@@ -896,7 +893,7 @@ a {
 
 #locked {
 	color: white;
-    width: 80%;
+    width: 90%;
     padding: 50px 2%;
     text-align: left;
     background-color: #2f3136;
@@ -905,7 +902,7 @@ a {
 
 #unlocked {
 	color: white;
-    width: 80%;
+    width: 90%;
     padding: 50px 2%;
     text-align: left;
     background-color: #2f3136;
