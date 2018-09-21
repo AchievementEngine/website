@@ -380,6 +380,7 @@
 			<div class="topText">
 				Reinventing Game Achievements
 			</div>
+			<a href="/website/login.php" class="button" style="color:#58aa6a;text-shadow:none;border-radius:15px;font-size:20px">Beta Site</a>
 		</div>
 		<div id="nav" class="nav dgrey">
 			<ul>
