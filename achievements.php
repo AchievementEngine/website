@@ -71,6 +71,7 @@
 						<div class="scrollbar-2" id="style-2">
 							<center>
 								<br>
+								
 								<div id="myDIVheader">
 									<?php if ($gamesExist == true) {
 										echo "Select a game to see your achievements";
@@ -78,12 +79,18 @@
 										echo "You do not have any games";
 									} ?>
 								</div>
-								<div id="unlocked" style="display: none;">		<!-- hidden until a game button is clicked. Displays unlocked achievements -->
-									
-								</div>	
-								<div id="locked" style="display: none;">		<!-- Same ^^. Displays locked achievements -->
 								
+								<br>
+								
+								<div id="subheader" style="display: none;">	<!-- hidden until a game button is clicked. Displays achievement progress -->
 								</div>
+								
+								<div id="unlocked" style="display: none;">	<!-- Same ^^. Displays completed achievements -->
+								</div>	
+								
+								<div id="locked" style="display: none;">	<!-- Same ^^. Displays locked achievements -->
+								</div>
+								
 								<div class="force-overflow"></div>
 							</center>
 						</div>
@@ -106,11 +113,15 @@
 			var unlocked = document.getElementById("unlocked");	 
 			var locked = document.getElementById("locked");	
 			var header = document.getElementById("myDIVheader");
+			var subheader = document.getElementById("subheader");
 			if (unlocked.style.display === "none") {	//unhide div when game clicked
 				unlocked.style.display = "block";
 			}
 			if (locked.style.display === "none") {	
-					locked.style.display = "block";
+				locked.style.display = "block";
+			}
+			if (subheader.style.display === "none") {	
+				subheader.style.display = "block";
 			}
 			
 			document.getElementById("unlocked").innerHTML = "<h1 style='font-size:18pt'> Unlocked Achievements </h1> <br>";		//refresh for new game
@@ -122,43 +133,53 @@
 				$achName = $achRow['achName'];
 				$achDesc = $achRow['achDesc'];
 				$achStr = $achRow['achStr'];
-				$achPic = "data/achievements/".$gameStr."/".$achStr.".png";
 				$achType = $achRow['achType'];
+				$achPic = "data/achievements/".$gameStr."/".$achStr.".png";
+				$achColour = "";
+				if($achType == "bronze") {
+					$achColour = "<i class='fas fa-circle' style='color:#CD7F32'></i>";
+				} else if($achType == "silver") {
+					$achColour = "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
+				} else if($achType == "gold") {
+					$achColour = "<i class='fas fa-circle' style='color:#FFD700'></i>";
+				} else if($achType == "diamond") {
+					$achColour = "<i class='fas fa-circle' style='color:#00F6FF'></i>";
+				} else if($achType == "nil") {
+					$achColour = "<i class='fas fa-circle' style='color:#000000'></i>";
+				}
 				
-			if($achType == "bronze") {
-				$achColour = "class=fas fa-circle style=color:#CD7F32";
-			} else if($achType == "silver") {
-				$achColour = "class=fas fa-circle style=color:#D8D8D8";
-			} else if($achType == "gold") {
-				$achColour = "class=fas fa-circle style=color:#FFD700";
-			} else if($achType == "diamond") {
-				$achColour = "class=fas fa-circle style=color:#00F6FF";
-			} else if($achType == "nil") {
-				$achColour = "class=fas fa-circle style=color:#000000";
-			}
+				$countAchieved = "SELECT count(*) FROM uachievements ua JOIN achievements a ON ua.achStr = a.achStr WHERE ua.progress = a.achValue AND ua.gameID = a.gameID AND ua.gameID = '$gameID'";
+				$countAchResults = $db->query($countAchieved);
+				$countAchRow = $countAchResults->fetch_array(MYSQLI_ASSOC);
+				$countAch = $countAchRow['count(*)'];
+				$countAll = "SELECT count(*) FROM achievements WHERE gameID = '$gameID'";
+				$countAllResults = $db->query($countAll);
+				$countAllRow = $countAllResults->fetch_array(MYSQLI_ASSOC);
+				$countAll = $countAllRow['count(*)'];
+				
+				$progressPercent = round(($countAch/$countAll) * 100, 0);
+				if ($progressPercent < 1) {
+					$progressPercent = 1;
+				}
 				?>
+				
 				header.innerHTML = "<?=$gameName?> ";
 				
-				unlocked.innerHTML += 	
+				subheader.innerHTML = "<?=$countAch?> / " +
+					"<?=$countAll?> " + 
+					"Achievements Completed (<?=$progressPercent?>%)<br>" + 
+					"<div class='pBar' style='height:20px'>" + 
+						"    <div class='pProgress' style='width:<?=$progressPercent?>%; align:center; height:50%;'>" + 
+						"</div>" +
+					"</div>";
 				
+				unlocked.innerHTML += 	
 					"<div class = featuredAch>"+
 						"<img src='<?=$achPic?>' height='70px'>" +
 						"<div class = featureInfo>"+
 							"<div class = featureName>"+
-								"<?php
-								if($achType == "bronze") {
-									echo "<i class='fas fa-circle' style='color:#CD7F32'></i>";
-								} else if($achType == "silver") {
-									echo "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
-								} else if($achType == "gold") {
-									echo "<i class='fas fa-circle' style='color:#FFD700'></i>";
-								} else if($achType == "diamond") {
-									echo "<i class='fas fa-circle' style='color:#00F6FF'></i>";
-								} else if($achType == "nil") {
-									echo "<i class='fas fa-circle' style='color:#000000'></i>";
-								}
-								?>"+
-								" <?=$achName?>" +
+								"<?=$achColour?>"+
+								" <?=$achName?>"+
 							"</div>"+
 							"<div style=padding:5px 5px 5px 20px;>"+
 								"<?=$achDesc?>" +
@@ -174,31 +195,43 @@
 				$lockedName = $lockedRow['achName'];
 				$lockedDesc = $lockedRow['achDesc'];
 				$lockedStr = $lockedRow['achStr'];
+				$lockedType = $lockedRow['achType'];
+				$lockedProgress = $lockedRow['progress'];
+				$lockedValue = $lockedRow['achValue'];
 				$lockedPic = "data/achievements/".$gameStr."/".$lockedStr.".png";
+				$lockedColour = "";
+				$lockedPercent = round($lockedProgress/$lockedValue * 100, 0);
+				if ($lockedPercent < 1) {
+					$lockedPercent = 1;
+				}
+				if($lockedType == "bronze") {
+					$lockedColour = "<i class='fas fa-circle' style='color:#CD7F32'></i>";
+				} else if($lockedType == "silver") {
+					$lockedColour = "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
+				} else if($lockedType == "gold") {
+					$lockedColour = "<i class='fas fa-circle' style='color:#FFD700'></i>";
+				} else if($lockedType == "diamond") {
+					$lockedColour = "<i class='fas fa-circle' style='color:#00F6FF'></i>";
+				} else if($lockedType == "nil") {
+					$lockedColour = "<i class='fas fa-circle' style='color:#000000'></i>";
+				}
 				?>
-				locked.innerHTML += 					
-					
+				locked.innerHTML +=
 					"<div class = featuredAch>"+
 						"<img src='<?=$lockedPic?>' height='70px'>" +
 						"<div class = featureInfo>"+
 							"<div class = featureName>"+
-								"<?php
-								if($achType == "bronze") {
-									echo "<i class='fas fa-circle' style='color:#CD7F32'></i>";
-								} else if($achType == "silver") {
-									echo "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
-								} else if($achType == "gold") {
-									echo "<i class='fas fa-circle' style='color:#FFD700'></i>";
-								} else if($achType == "diamond") {
-									echo "<i class='fas fa-circle' style='color:#00F6FF'></i>";
-								} else if($achType == "nil") {
-									echo "<i class='fas fa-circle' style='color:#000000'></i>";
-								}
-								?>"+
-								" <?=$lockedName?>" +
+								"<?=$lockedColour?>"+
+								" <?=$lockedName?>"+
 							"</div>"+
 							"<div style=padding:5px 5px 5px 20px;>"+
 								"<?=$lockedDesc?>" +
+							"</div>"+
+							
+							"<div class='pBar'>" + 
+								"<div class='pProgress' style='width:<?=$lockedPercent?>%'>" + 
+								"<?=$lockedProgress?>/<?=$lockedValue?>" + 
+								"</div>" +
 							"</div>"+
 						"</div>"+
 					"</div>";

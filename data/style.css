@@ -891,6 +891,16 @@ a {
 	font-size: 30px;
 }
 
+#subheader {
+	color: white;
+    width: 50%;
+    padding: 14px 0;
+    text-align: center;
+    background-color: #2f3136;
+    margin-top: 20px 50px;
+	font-size: 20px;
+}
+
 #locked {
 	color: white;
     width: 90%;
