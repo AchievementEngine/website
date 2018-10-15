@@ -9,6 +9,7 @@
 		<form method="post" action="search.php">
 			<div class="searchzone">
 				<input type="text" name="search" class="searchBox" placeholder="Search users...">
+				<button style="font-family:FontAwesome;height:40px;width:40px;border-radius:10%"><i class="fas fa-search"></i></button>
 			</div>
 		</form>
 	</div>
@@ -35,9 +36,9 @@
 									$userAdding = $friendNotifRow['user1'];
 									echo "<a href='profile.php?username=".$userAdding."' style='white-space: nowrap'>Friend request from $userAdding</a>";
 									echo "<table style='width:100%'><tr><td>";
-									echo "<a href='scripts/friends.php?usernameGET=".$userAdding."&friendNotifGET=true' style='text-align:center'>Accept</a>";
+									echo "<a href='scripts/friends.php?username=".$userAdding."&friendNotif=true' style='text-align:center'>Accept</a>";
 									echo "</td><td>";
-									echo "<a href='scripts/friends.php?usernameGET=".$userAdding."&friendNotifGET=false' style='text-align:center'>Decline</a>";
+									echo "<a href='scripts/friends.php?username=".$userAdding."&friendNotif=false' style='text-align:center'>Decline</a>";
 									echo "</td></tr></table>";
 									echo "<hr>";
 								}

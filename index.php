@@ -309,7 +309,7 @@
 			margin:10px 10px 50px 10px;
 			background-color:#2f2f33;
 			text-align: center;
-			height:100%;
+			height:340px;
 		}
 		.member img {
 			margin-top:-50px;
@@ -380,7 +380,6 @@
 			<div class="topText">
 				Reinventing Game Achievements
 			</div>
-			<a href="/website/login.php" class="button" style="color:#58aa6a;text-shadow:none;border-radius:15px;font-size:20px">Beta Site</a>
 		</div>
 		<div id="nav" class="nav dgrey">
 			<ul>
@@ -563,6 +562,14 @@
 			<div class="member-bio">
 				Computer enthusiast studying Computer Science at the University of Wollongong, majoring in Cyber Security. With an interest in all things tech, I enjoy programming, pen testing, and gaming. Computing has been a career path I've always wanted, and it's everything I'd hoped. I have high hopes of becoming a white hat hacker in the future, and working within information security.
 			</div>
+			<div class="member-quote">
+				<i class="fas fa-quote-left"></i>
+					Universal education is the most corroding and disintegrating poison that liberalism has ever invented for its own destruction.
+				<i class="fas fa-quote-right"></i>
+				<div class="member-quote-attri">
+					- Adolf Hitler
+				</div>
+			</div>
 		</div>
 		<div class="member">
 			<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-9/13226689_1166365536721451_645010810966200052_n.jpg?_nc_cat=0&oh=5744e8415fceced08234fb4caf6f0659&oe=5C27FFAB" class="round glow-white">
@@ -575,6 +582,14 @@
 			<div class="member-bio">
 				Hailing from the Sutherland Shire, I attended Kirrawee High School before graduating to study a Bachelor of Computer Science at Wollongong University. I have experience using HTML, CSS, Javascript, PHP, SQL, C++, Java, C# and Swift which will allow me to take on the role of Lead programmer and bring my experience and knowledge to the other group members to produce a final quality product.
 			</div>
+			<div class="member-quote">
+				<i class="fas fa-quote-left"></i>
+				Workers of the world unite; you have nothing to lose but your chains.
+				<i class="fas fa-quote-right"></i>
+				<div class="member-quote-attri">
+					- Karl Marx
+				</div>
+			</div>
 		</div>
 		<div class="member">
 			<img src="https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-1/c0.0.160.160/p160x160/17796588_1410565089008661_1105075637683509917_n.jpg?_nc_cat=0&oh=684597b5a244e8de5692f4447209885a&oe=5BBDBF20" class="round glow-white">
@@ -585,7 +600,15 @@
 				Programmer
 			</div>
 			<div class="member-bio">
-				Currently studying a bachelor of computer science, with a major of game and multimedia development. I have a great interest in all things computers, gaming and have a goal of creating my own game using the skills and knowledge I've learnt from university and from self teaching.
+				serial flasher
+			</div>
+			<div class="member-quote">
+				<i class="fas fa-quote-left"></i>
+				Dyslexics of the world, untie!
+				<i class="fas fa-quote-right"></i>
+				<div class="member-quote-attri">
+					- Dyslexic Karl Marx
+				</div>
 			</div>
 		</div>
 		<div class="member">
@@ -597,7 +620,15 @@
 				Programmer
 			</div>
 			<div class="member-bio">
-				I was born in Sydney and grew up in the suburb of Collaroy Plateau. I attended local public schools till the end of year 10 when my family and I moved to a rural property outside of Bega on the Far South Coast of NSW. It was there that I graduated from Bega High School after the completion of my HSC.  I am now living away from home, studying a Bachelor of Computer Science at the University of Wollongong.
+				I was born in Sydney and grew up in the suburb of Collaroy Plateau. I attended local public schools till the end of year 10 when my family and I moved to a rural property outside of Bega on the Far South Coast of NSW, where I graduated from Bega High School after the completion my HSC.  I am now living away from home, studying a Bachelor of Computer Science at the University of Wollongong.
+			</div>
+			<div class="member-quote">
+				<i class="fas fa-quote-left"></i>
+				Workers of the world unite; you have nothing to lose but your chains.
+				<i class="fas fa-quote-right"></i>
+				<div class="member-quote-attri">
+					- Karl Marx
+				</div>
 			</div>
 		</div>
 		<div class="member">
@@ -610,6 +641,14 @@
 			</div>
 			<div class="member-bio">
 				Born in Sydney, Australia, went to school at Holy Family Primary, followed by Menai High School. I graduated High School after completing my HSC and now im currently studying a Bachelors Degree in Information Technology, Majoring Network Design and Management at the Univeristy of Wollongong.
+			</div>
+			<div class="member-quote">
+				<i class="fas fa-quote-left"></i>
+				Workers of the world unite; you have nothing to lose but your chains.
+				<i class="fas fa-quote-right"></i>
+				<div class="member-quote-attri">
+					- Karl Marx
+				</div>
 			</div>
 		</div>
 	</div>

@@ -139,7 +139,7 @@
 										</div>
 									<?php } 
 									
-									$friendQuery = "SELECT * FROM friends WHERE (user1 = '$username1' AND user2 = '$username2') OR (user1 = '$username2' AND user2 = '$username1')";
+									$friendQuery = "SELECT * FROM friends WHERE user1 = '$username1' AND user2 = '$username2'";
 									$friendResults = $db->query($friendQuery);
 									if (mysqli_num_rows($friendResults) == 0) {
 										$friendsB = false;
@@ -149,7 +149,7 @@
 										<div class="dropdown" style="padding-right:7px;">
 											<button onclick='myFunction4()' class='dropbtn' style='width:150px; height:50px; border-radius:0; background-color:#555555'>Friends</button>
 											<div id="friends" class="dropdown-content">
-												<a href='scripts/friends.php?usernameGET=<?=$username2?>&unfriendGET=unfriend' style='text-align:center' class='button'>Unfriend</a>
+												<a href='scripts/friends.php?username=<?=$username2?>&unfriend=unfriend' style='text-align:center' class='button'>Unfriend</a>
 											</div>
 										</div>
 									<?php }
@@ -162,14 +162,14 @@
 										<div class="dropdown" style="padding-right:7px;">
 											<button onclick='myFunction5()' class='dropbtn' style='width:200px; height:50px; border-radius:0; background-color:#555555'>Friend Request Sent</button>
 											<div id="requestSent" class="dropdown-content">
-												<a href='scripts/friends.php?usernameGET=<?=$username2?>&cancelRequest=true' style='text-align:center' class='button'>Cancel Request</a>
+												<a href='scripts/friends.php?username=<?=$username2?>&cancelRequest=true' style='text-align:center' class='button'>Cancel Request</a>
 											</div>
 										</div>
 									<?php
 									} else if (mysqli_num_rows($friendAddedResults) == 1) {
 										echo "<button class='button'>User has added you</button>";
 									} else if (!$friendsB) {
-										echo "<a href='scripts/friends.php?usernameGET=".$username2."&friendReqGET=true' class='button'>Add Friend</a>";
+										echo "<a href='scripts/friends.php?username=".$username2."&friendReq=true' class='button'>Add Friend</a>";
 									} 
 								}
 								?>
