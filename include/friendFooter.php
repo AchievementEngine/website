@@ -1,5 +1,5 @@
 <div class="imdown">
-	<button onclick="showIM()" class="imbtn"></button>
+	<button onclick="showIM()" class="imbtn"><i class="fas fa-user-friends"></i></button>
 	<div id="im" class="im-content">
 	<?php 
 		$tempUser = $_SESSION['username'];

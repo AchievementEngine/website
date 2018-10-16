@@ -708,14 +708,11 @@ a {
 /* Dropdown Button */
 .imbtn {
     color: white;
-    padding: 16px;
-    font-size: 16px;
+    font-size: 20px;
     border: none;
     cursor: pointer;
-	background-image: url("https://cdn2.iconfinder.com/data/icons/speech-bubbles-line/48/empty_bubble-512.png");
-	background-size: 80%;
-	background-repeat: no-repeat;
-	background-position: 50% 65%;
+	font-family:FontAwesome;
+	background-color: #36393e;
     width: 40px;
     height: 40px;
     border-radius: 100%;
@@ -883,7 +880,7 @@ a {
     float:left;
     width:80%;
     border: 2px solid #202225;
-    height:85%;
+    height:80%;
     overflow:auto;
 }
 

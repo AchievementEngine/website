@@ -108,7 +108,7 @@
 			<li>
 				<form action="scripts/newConversation.php" method="POST">
 					<input type="text" name="recipient" class="messagesInput">
-					<button type="submit" name="submit" style="font-family:FontAwesome;height:30px;width:30px;border-radius:10%">
+					<button type="submit" name="submit" style="font-family:FontAwesome;height:30px;width:30px;border-radius:10%; color: white; background-color: #202225; margin: 10px; border: 0;">
 						<i class="fas fa-plus"></i>
 					</button>
 				</form>
