@@ -100,9 +100,10 @@
 	<?php include ('include/header2.php');?>
 
 	<br>
-	<h1 style="text-align:center; font-size:30px; color:white;"> Messages </h1> 
-
-	<div class="specificInfo">
+	
+	<div class="body">
+	<div class="content">
+		<h1 style="text-align:center; font-size:30px; color:white; padding: 0 0 10px 0;"> Messages </h1> 
 		<ul class="convoList">
 			<li>
 				<form action="scripts/newConversation.php" method="POST">
@@ -136,6 +137,7 @@
 			</form>
 		<?php } ?>
 		<?php include ('include/friendFooter.php'); ?>
+	</div>
 	</div>
 </body>
 
