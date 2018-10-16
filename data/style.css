@@ -892,24 +892,28 @@ a {
 }
 
 .messageList li {
-	margin: 3px 0 3px 0;
+	
     font-size: 16pt;
 }
 
 .sent {
+	margin: 3px 0 3px 60%;
 	border-radius: 30px;
 	padding:4px;
     text-align:right;
     background-color:lightgreen;	/* blue */
 	color:black;
+	width:40%;
 }
 
 .reci {
+	margin: 3px 0 3px 0;
 	border-radius: 30px;
 	padding:4px;
     text-align:left;
     background-color:#202225; 	/* grey-ish */
 	color:white;
+	width:40%;
 }
 
 .specificInfo {
