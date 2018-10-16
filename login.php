@@ -64,6 +64,11 @@
 					<a href="register.php" class="button">Sign up</a>
 				</p>
 			</div>
+			<div class="inputInfo">
+				<p style="padding-left: 70px">Forgot your password? 
+					<a href="forgotPassword.php" class="button">Reset it</a>
+				</p>
+			</div>
 		</div>
 	</div>
 </body>

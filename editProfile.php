@@ -85,6 +85,7 @@
 					</p>
 				</div>
 			<?php endif ?>	
+			
 			<form action="scripts/editProfile.php" method="post">
 				<div class="inputInfo">
 					<label>Display Name</label>
@@ -160,11 +161,32 @@
 					<label><button type="submit" class="button" name="edit_achievements">Confirm</button></label>
 				</div>
 			</form>
+			
+			<br><br><br><br><br><br><hr><br><br>		<!-- one hr as well -->
+			
+			<div class="inputInfo">
+				<?php 
+				if(isset($_SESSION['username'])) {
+					$username = $_SESSION['username']; ?>	
+					<div class="dropdown" style="padding-right:7px; font:inherit; font-size:20px">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						This is final. Once you click this button, we cannot get your account back.<br><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href='scripts/deleteUser.php?deleteSelf=<?=$username?>' class='button'>Delete Account</a>
+					</div>
+				<?php } ?>
+			</div>
 		</div>
 	</div>
 	<?php include ('include/friendFooter.php'); ?>
 </body>
 
 <?php include ('include/profileDropdown.php'); ?>
+
+<script>
+function myFunction3() {
+    document.getElementById("deleteUser").classList.toggle("show");
+}
+</script>
 
 </html> 

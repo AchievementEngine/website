@@ -148,7 +148,7 @@
 					$achColour = "<i class='fas fa-circle' style='color:#000000'></i>";
 				}
 				
-				$countAchieved = "SELECT count(*) FROM uachievements ua JOIN achievements a ON ua.achStr = a.achStr WHERE ua.progress = a.achValue AND ua.gameID = a.gameID AND ua.gameID = '$gameID'";
+				$countAchieved = "SELECT count(*) FROM uachievements ua JOIN achievements a ON ua.achStr = a.achStr WHERE ua.progress = a.achValue AND ua.gameID = a.gameID AND ua.gameID = '$gameID' AND ua.username = '$username'";
 				$countAchResults = $db->query($countAchieved);
 				$countAchRow = $countAchResults->fetch_array(MYSQLI_ASSOC);
 				$countAch = $countAchRow['count(*)'];
@@ -165,9 +165,8 @@
 				
 				header.innerHTML = "<?=$gameName?> ";
 				
-				subheader.innerHTML = "<?=$countAch?> / " +
-					"<?=$countAll?> " + 
-					"Achievements Completed (<?=$progressPercent?>%)<br>" + 
+				subheader.innerHTML =
+					"<?=$countAch?> / <?=$countAll?> Achievements Completed (<?=$progressPercent?>%)<br>" + 
 					"<div class='pBar' style='height:20px'>" + 
 						"    <div class='pProgress' style='width:<?=$progressPercent?>%; align:center; height:50%;'>" + 
 						"</div>" +

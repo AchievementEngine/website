@@ -29,6 +29,23 @@
 			$db->query($deleteUser4);
 			$db->query($deleteUser5);
 		}
+		header("location: ../profile.php");
 	}
-	header("location: ../profile.php");
+	
+	if(isset($_GET['deleteSelf'])) {
+		$username = $_SESSION['username'];
+		$delete1 = "DELETE FROM ugames WHERE username = '$username'";
+		$delete2 = "DELETE FROM uachievements WHERE username = '$username'";
+		$delete3 = "DELETE FROM friendrequest WHERE user1 = '$username' OR user2 = '$username'";
+		$delete4 = "DELETE FROM friends WHERE user1 = '$username' OR user2 = '$username'";
+		$delete5 = "DELETE FROM users WHERE username = '$username'";
+		
+		$db->query($delete1);
+		$db->query($delete2);
+		$db->query($delete3);
+		$db->query($delete4);
+		$db->query($delete5);
+		
+		header("location: logout.php");
+	}
 ?>
