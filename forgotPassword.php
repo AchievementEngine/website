@@ -32,11 +32,11 @@
 		
 		<br><br><br><br><br><br>
 		<div class="content">
-			<div class="topInfo">
+			<div class="topInfo" style="margin-left:7%;">
 				<div class="username" style="text-align:left">Reset Password</div>
 			</div>
 		
-			<form method="post" action="scripts/forgot.php">
+			<form method="post" action="scripts/forgot.php" class="inputInfo" style="padding-left: 5%;">
 			  <p>Please enter the email address associated with your account.</p>
 			  <br>
 			  <input type="text" name="email"><br><br><br>

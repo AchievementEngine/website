@@ -177,7 +177,7 @@ body, html{
 }
 
 header {
-	width:100%-400;
+	min-width:570px;
 	padding:10px 20% 10px 20%;
 	height:40px;
 	background-color: #36393e;
@@ -227,7 +227,7 @@ header .farleft {
 
 header .searchBox {
 	height:40px;
-	margin:0px 5px 0px 50px;
+	margin:0px 1% 0px 2%;
 	font-size:16pt;
 	color:white;
 	font-family:Open Sans;
@@ -238,7 +238,7 @@ header .searchZone {
 }
 
 header .headLeft {
-	width:700px;
+	width:70%;
 }
 
 /* Friends List */
@@ -293,14 +293,14 @@ header .headLeft {
 .profilePic {
 	clip-path: circle(100px at 100px 100px);
 	margin-bottom: -60px;
-	margin-left:100px;
+	margin-left:7%;
 }
 
 .content {
 	background-color:#36393e;
 	color:white;
 	padding:10px;
-	
+	min-width:600px;
 	font-size:15px;
 }
 
@@ -317,7 +317,7 @@ header .headLeft {
 	rows: 5;
 }
 .topInfo {
-	margin-left:300px;
+	margin-left:calc(7% + 220px);
 	margin-top:-120px;
 	margin-bottom:50px;
 	padding:10px;

@@ -20,7 +20,7 @@
 		
 		<br><br><br><br><br><br>
 		<div class="content">
-			<div class="topInfo">
+			<div class="topInfo" style="margin-left:7%;">
 				<div class="username" style="text-align:left">Login</div>
 			</div>
 			<?php  if (isset($_SESSION['registered'])) : ?>
