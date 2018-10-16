@@ -9,7 +9,7 @@
 		<form method="post" action="search.php">
 			<div class="searchzone">
 				<input type="text" name="search" class="searchBox" placeholder="Search users...">
-				<button style="font-family:FontAwesome;height:40px;width:40px;border-radius:10%"><i class="fas fa-search"></i></button>
+				<button style="font-family:FontAwesome;height:42px;width:70px;border-radius:10%; background-color: grey; border: 0"><i class="fas fa-search"></i></button>
 			</div>
 		</form>
 	</div>
