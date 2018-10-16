@@ -45,10 +45,10 @@
 	<?php include ('include/header2.php'); ?>
 	
 	<div class = "body">
-		<div class="content">
-			<div class="moreInfo">
-				<span class="sideBar">
-					<div class="gameScroll" style="width:12.5%">
+		<div class="content" style="height:95%;">
+			<div class="moreInfo" style="height:100%;">
+				<span style="height:100%; width:17.5%;">
+					<div class="activeZone" style="height:100%;">
 						<div class="scrollbar" id="style-1">
 							<div class="btn-group">
 								<?php foreach($userGames as $gameID) { 
@@ -67,7 +67,7 @@
 					</div>
 				</span>
 				<span class="showcase" style="width:82.5%">
-					<div class="activeZone">
+					<div class="activeZone" style="height:100%;">
 						<div class="scrollbar-2" id="style-2">
 							<center>
 								<br>

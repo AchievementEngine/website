@@ -102,7 +102,7 @@
 	<br>
 	
 	<div class="body">
-	<div class="content">
+	<div class="content" style="height:85%;">
 		<h1 style="text-align:center; font-size:30px; color:white; padding: 0 0 10px 0;"> Messages </h1> 
 		<ul class="convoList">
 			<li>

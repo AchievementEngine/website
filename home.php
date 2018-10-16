@@ -42,7 +42,7 @@
 	<?php include ('include/sideNav.php'); ?>	
 	<?php include ('include/header2.php'); ?>
 	<div class="body">
-		<div class="content">
+		<div class="content" style="height:95%;">
 			<h1 style="text-align:center; font-size:30px;"> Friend Activity </h1> 
 			<br>
 			
