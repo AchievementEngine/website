@@ -51,7 +51,7 @@
 				<div class="col">
 					<br style="clear:both;"/>
 					<p style="font-size:24px;">Achievements</p> <br>
-					<table width='100%' class="table">
+					<table style="width:100%;" class="table">
 					<?php 
 						$user = $_SESSION['username'];
 						$achQuery = "SELECT u.dispName, a.achName, a.achStr, g.gameName, g.gameStr, ua.datetime FROM friends f JOIN uachievements ua on f.user2 = ua.username join achievements a on ua.achStr = a.achStr join games g on g.gameID = a.gameID join users u on ua.username = u.username where f.user1 = '$user' and ua.datetime is not null order by ua.datetime desc";
@@ -85,7 +85,7 @@
 				<div class="col">
 					<br style="clear:both;"/>
 					<p style="font-size:24px;">Games</p> <br>
-					<table width='100%' class="table">
+					<table style="width:100%;" class="table">
 					<?php 
 						$user = $_SESSION['username'];
 						$gameQuery = "SELECT u.dispName, g.gameName, g.gameStr, ug.datetime FROM friends f JOIN ugames ug on f.user2 = ug.username join games g on ug.gameID = g.gameID join users u on ug.username = u.username where f.user1 = '$user' and ug.datetime is not null order by ug.datetime desc";
