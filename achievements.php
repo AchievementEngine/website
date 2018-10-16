@@ -48,7 +48,7 @@
 		<div class="content">
 			<div class="moreInfo">
 				<span class="sideBar">
-					<div class="gameScroll">
+					<div class="gameScroll" style="width:12.5%">
 						<div class="scrollbar" id="style-1">
 							<div class="btn-group">
 								<?php foreach($userGames as $gameID) { 

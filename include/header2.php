@@ -4,7 +4,7 @@
 			<span onclick="openNav()"><img src="https://cdn3.iconfinder.com/data/icons/trico-circles-solid/24/Circle-Solid-List-512.png" height="40px"></span> 
 		</div>
 		<div class="left">
-			<a href="home.php"> <img src="data/AELogo2Light.png" height="40px"></a>
+			<a href="home.php"> <img src="data/AELogo2Light.png" height="45px"></a>
 		</div>
 		<form method="post" action="search.php">
 			<div class="searchzone">
