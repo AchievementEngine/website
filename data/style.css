@@ -84,7 +84,6 @@ abbr[title], dfn[title] {
 table {
     border-collapse:collapse;
     border-spacing:0;
-	width: 60%;
 }
 
 hr {
@@ -227,7 +226,7 @@ header .farleft {
 
 header .searchBox {
 	height:40px;
-	margin:0px 5px 0px 50px;
+	margin:0px 15px 0px 50px;
 	font-size:16pt;
 	color:white;
 	font-family:Open Sans;
@@ -286,7 +285,7 @@ header .headLeft {
 /* Content */
 
 .body {
-	margin:50px 10% 0px 10%;
+	margin:50px 175px 0px 175px;
 	height:calc(100%-200px);
 	width:calc(100%-600);
 }
@@ -336,6 +335,7 @@ header .headLeft {
 
 .sideBar > div {
 	background-color:#2f3136;
+	width:12.5%;
 	margin:5px;
 	padding:5px;
 }
@@ -394,6 +394,14 @@ input[type="text"] {
 	background-color:#2c2f33;
 }
 
+input.messagesInput[type="text"] { 
+	border: 1px solid grey;
+    border-radius: 5px;
+	padding: 0px 10px;
+	width: 70%;
+	background-color:#2c2f33;
+}
+
 input[type="password"] { 
 	border: 1px solid grey;
     border-radius: 5px;
@@ -435,7 +443,7 @@ input[type="file"] {
 
 .showcase {
 	margin-left:auto;
-	width:80%;
+	width:calc(100% - 280px);
 	height:100%;
 }
 
@@ -458,11 +466,9 @@ input[type="file"] {
 
 .pBar {
 	background-color:grey;
-	width:96%;
+	width:700px;	/* 700px */
 	height:30px;
 	border-radius: 20px;
-	text-align: center;
-	margin: 2%;
 }
 
 .pProgress {
@@ -579,108 +585,6 @@ a {
 .activeZone {
 }
 
-/* Messages */
-
-.messagePic {
-	clip-path: circle(25px at 25px 25px);
-	margin-bottom: 10px;
-	margin-left:10px;
-}
-
-.messageName {
-	margin-left:75px;
-	margin-top:-50px;
-	padding-bottom:30px;
-	color:white;
-	font-size:20pt;
-}
-
-.messageList {
-	height:600px;
-	padding:10px;
-	color:black;
-	
-}
-
-.messageList ul {
-	list-style: none;
-	height:calc(100% - 50px);
-	font-size:16pt;
-	vertical-align: text-bottom;
-	display:flex;
-	flex-direction: column;
-}
-
-.messageList ul > :first-child {
-	margin-top:auto;
-}
-
-.message {
-	display: flex;
-	align-items: center;
-}
-
-.message-picture {
-	clip-path: circle(20px at 20px 20px);
-}
-
-.message-content {
-	background-color:lightgreen;
-	padding:10px 15px 10px 15px;
-	border-radius: 20px;
-	margin-left:15px;
-	margin-right:15px;
-}
-
-.sent {
-	float:right;
-}
-
-.sent .message-content {
-	background-color:grey;
-}
-
-.sendArea {
-	height:30px;
-	width:100%;
-	color:white;
-	font-size:16pt;
-	margin-top:10px;
-	display:flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.sendArea input {
-	height:30px;
-	width:500px;
-	background-color:inherit;
-	border:none;
-	border-bottom:1px solid grey;
-	font-size:16pt;
-	color:white;
-}
-
-.sendArea button {
-	background-color:#202225;
-	color:white;
-	border:none;
-	height:30px;
-	width:70px;
-	cursor:pointer;
-}
-
-.sendArea button:hover {
-	background-color:darkgrey;
-}
-
-.sendArea i {
-	padding:0px 5px 0px 5px;
-}
-
-.sendArea i:hover {
-	color:darkgrey;
-}
 
 /* The side navigation menu */
 .sidenav {
@@ -743,7 +647,7 @@ a {
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-    /*background-color: #6e6e72;*/
+    background-color: #6e6e72;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -817,7 +721,7 @@ a {
 
 /* Dropdown button on hover & focus */
 .imbtn:hover, .imbtn:focus {
-    /*background-color: #6e6e72;*/
+    background-color: #6e6e72;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -826,7 +730,6 @@ a {
 	bottom:15px;
     right:15px;
     display: inline-block;
-	
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -851,7 +754,7 @@ a {
 
 /* Change color of dropdown links on hover */
 .im-content a:hover {
-	/*background-color: #6e6e72*/
+	background-color: #6e6e72
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
@@ -907,7 +810,7 @@ a {
 	color: white;
     width: 90%;
     padding: 50px 2%;
-    text-align: center;
+    text-align: left;
     background-color: #2f3136;
     margin-top: 20px;
 }
@@ -916,7 +819,7 @@ a {
 	color: white;
     width: 90%;
     padding: 50px 2%;
-    text-align: center;
+    text-align: left;
     background-color: #2f3136;
     margin-top: 20px;
 }
@@ -946,6 +849,78 @@ a {
     background-color: #1c211c;
 }
 
-.featureInfo {
-	width: 100%;
+/* Messages */
+.convoList {
+    list-style: none;
+    width:19%;
+    height:100%;
+    border: 1px solid lightgrey;
+    float:left;
+}
+
+.convoList li {
+    padding:10px;
+    border: 1px solid lightgrey;
+    text-align: center;
+    font-size:14pt;
+}
+
+.messageName {
+    list-style: none;
+    border: 1px solid lightgrey;
+	width:80%;
+	float:left;
+}
+
+.messageName li {
+    padding:10px;
+    border: 1px solid lightgrey;
+    text-align: center;
+    font-size:14pt;
+}
+
+.messageArea {
+    float:left;
+    width:80%;
+    border: 1px solid lightgrey;
+    height:85%;
+    overflow:auto;
+}
+
+.messageList {
+	padding-left: 3%;
+	padding-right: 3%;
+    list-style: none;
+    max-height:100%;
+}
+
+.messageList li {
+	margin: 3px 0 3px 0;
+    font-size: 16pt;
+}
+
+.sent {
+	border-radius: 30px;
+	padding:4px;
+    text-align:right;
+    background-color:#0000FF;	/* blue */
+	color:white;
+}
+
+.reci {
+	border-radius: 30px;
+	padding:4px;
+    text-align:left;
+    background-color:#6B6E70; 	/* grey-ish */
+	color:white;
+}
+
+.specificInfo {
+	height: 75%;
+    margin: 10px 10% 10px 10%;
+    padding: 25px;
+    background-color: grey;
+    font-family: Open Sans;
+    font-size: 24pt;
+	color:white;
 }
