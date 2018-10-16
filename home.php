@@ -25,13 +25,12 @@
 	.row {
 		display: flex; /* equal height of the children */
 		text-align:center;
-		background-color:dimgrey;
 	}
 
 	.col {
 		flex: 1; /* additionally, equal width */
-		padding: 1em;
-		border: solid;
+		margin: 0 2%;
+		background: #2f3136;
 	}
 	
 	table td {
@@ -104,7 +103,7 @@
 										<?=$gamePic?>
 									</td>
 									<td align="left" width="70%">
-										<?=$gameDate?>: <?=$gameFriend?> has bought <?=$game?>
+										<?=$gameDate?>: <?=$gameFriend?> played <?=$game?> for the first time
 									</td>
 								</tr>
 						<?php }

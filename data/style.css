@@ -84,6 +84,7 @@ abbr[title], dfn[title] {
 table {
     border-collapse:collapse;
     border-spacing:0;
+	width: 60%;
 }
 
 hr {
@@ -458,9 +459,11 @@ input[type="file"] {
 
 .pBar {
 	background-color:grey;
-	width:700px;	/* 700px */
+	width:96%;
 	height:30px;
 	border-radius: 20px;
+	text-align: center;
+	margin: 2%;
 }
 
 .pProgress {
@@ -905,7 +908,7 @@ a {
 	color: white;
     width: 90%;
     padding: 50px 2%;
-    text-align: left;
+    text-align: center;
     background-color: #2f3136;
     margin-top: 20px;
 }
@@ -914,7 +917,7 @@ a {
 	color: white;
     width: 90%;
     padding: 50px 2%;
-    text-align: left;
+    text-align: center;
     background-color: #2f3136;
     margin-top: 20px;
 }
@@ -942,4 +945,8 @@ a {
 /* Add a background color on hover */
 .btn-group button:hover {
     background-color: #1c211c;
+}
+
+.featureInfo {
+	width: 100%;
 }
