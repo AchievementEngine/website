@@ -19,16 +19,29 @@
 	//Check recipient exists
 	$sql = "SELECT * FROM users WHERE username = '$recipient'";
 	$results = $db->query($sql);
+
 	if($results->num_rows == 1) {
 		$query = "SELECT * FROM conversation";
 		$qresults = $db->query($query);
 		
 		while($qrow = $qresults->fetch_assoc()) {
+			$user1 = $qrow['sUsername'];
+			$user2 = $qrow['rUsername'];
+			
 			/* if already a convo between these 2 users, say nah */
-			if (($qrow['sUsername'] == $sender && $qrow['rUsername'] == $recipient) || ($qrow['sUsername'] == $recipient && $qrow['rUsername'] == $sender)) {
-				header("Location: ../messages.php?convoAlreadyExists=true");
+			if (($user1 == $sender && $user2 == $recipient) || ($user1 == $recipient && $user2 == $sender)) {
+				header("Location: ../messages.php?error=convoAlreadyExists");
 				exit();
 			}
+		}
+		
+		/* make sure can only initiate conversation with friend */
+		$query2 = "SELECT * FROM friends WHERE user1 = '$sender' and user2 = '$recipient'";
+		$result2 = $db->query($query2);
+		
+		if ($result2->num_rows != 1) {
+			header("Location: ../messages.php?error=notFriends");
+			exit();
 		}
 		
 		$lastSent = date("L-m-d H:i:s");
