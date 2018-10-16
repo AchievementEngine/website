@@ -4,12 +4,12 @@
 			<span onclick="openNav()"><img src="https://cdn3.iconfinder.com/data/icons/trico-circles-solid/24/Circle-Solid-List-512.png" height="40px"></span> 
 		</div>
 		<div class="left">
-			<a href="home.php"> <img src="data/AELogo2Light.png" height="40px"></a>
+			<a href="home.php"> <img src="data/AELogo2Light.png" height="45px"></a>
 		</div>
 		<form method="post" action="search.php">
 			<div class="searchzone">
 				<input type="text" name="search" class="searchBox" placeholder="Search users...">
-				<button style="font-family:FontAwesome;height:40px;width:40px;border-radius:10%"><i class="fas fa-search"></i></button>
+				<button style="font-family:FontAwesome;height:42px;width:70px;border-radius:10%; background-color: grey; border: 0"><i class="fas fa-search"></i></button>
 			</div>
 		</form>
 	</div>
