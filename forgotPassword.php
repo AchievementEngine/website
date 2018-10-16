@@ -1,3 +1,4 @@
+<!--
 <html>
   <body>
     <form method="post" action="scripts/forgot.php">
@@ -8,7 +9,7 @@
   </body>
 </html>
 
-<!--
+-->
 
 <!DOCTYPE html>
 <html>
@@ -34,28 +35,14 @@
 			<div class="topInfo">
 				<div class="username" style="text-align:left">Reset Password</div>
 			</div>
-			
+		
 			<form method="post" action="scripts/forgot.php">
-				
-				<div class="inputInfo">
-					<label>Email</label>
-					<input type="text" name="email" required>
-					<br><br>
-				</div>
-				
-				<div class="inputInfo">
-					<label><button type="submit" class="button" name="reset_pass">Reset</button></label>
-				</div>
-				<br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(this sends you an email)
+			  <p>Please enter the email address associated with your account.</p>
+			  <br>
+			  <input type="text" name="email"><br><br><br>
+			  <button type="submit" class ="button" name="submit_email">Submit</button>
 			</form>
-			<br><br><br><br><br><br>
-			<div class="inputInfo">
-				<p style="padding-left: 70px">Remembered your password? 
-					<a href="login.php" class="button">Sign in</a>
-				</p>
-			</div>
 		</div>
 	</div>
 </body>
 </html> 
--->
