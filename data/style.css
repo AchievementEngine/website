@@ -84,6 +84,7 @@ abbr[title], dfn[title] {
 table {
     border-collapse:collapse;
     border-spacing:0;
+	width:60%;
 }
 
 hr {
@@ -226,7 +227,7 @@ header .farleft {
 
 header .searchBox {
 	height:40px;
-	margin:0px 15px 0px 50px;
+	margin:0px 5px 0px 50px;
 	font-size:16pt;
 	color:white;
 	font-family:Open Sans;
@@ -285,7 +286,7 @@ header .headLeft {
 /* Content */
 
 .body {
-	margin:50px 175px 0px 175px;
+	margin:50px 10% 0px 10%;
 	height:calc(100%-200px);
 	width:calc(100%-600);
 }
@@ -335,7 +336,6 @@ header .headLeft {
 
 .sideBar > div {
 	background-color:#2f3136;
-	width:12.5%;
 	margin:5px;
 	padding:5px;
 }
@@ -443,7 +443,7 @@ input[type="file"] {
 
 .showcase {
 	margin-left:auto;
-	width:calc(100% - 280px);
+	width:80%;
 	height:100%;
 }
 
@@ -466,9 +466,11 @@ input[type="file"] {
 
 .pBar {
 	background-color:grey;
-	width:700px;	/* 700px */
+	width:96%;
 	height:30px;
 	border-radius: 20px;
+	text-align: center;
+	margin: 2%;
 }
 
 .pProgress {
@@ -647,7 +649,7 @@ a {
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #6e6e72;
+    /*background-color: #6e6e72;*/
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -676,7 +678,7 @@ a {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #6e6e72}
+.dropdown-content a:hover {/*background-color: #6e6e72*/}
 
 /* Button */
 .dropdown-content button {
@@ -721,7 +723,7 @@ a {
 
 /* Dropdown button on hover & focus */
 .imbtn:hover, .imbtn:focus {
-    background-color: #6e6e72;
+    /*background-color: #6e6e72;*/
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -754,7 +756,7 @@ a {
 
 /* Change color of dropdown links on hover */
 .im-content a:hover {
-	background-color: #6e6e72
+	/*background-color: #6e6e72*/
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
