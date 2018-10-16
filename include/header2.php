@@ -13,7 +13,10 @@
 			</div>
 		</form>
 	</div>
-	<div class="right">
+	<div class="right" style="text-align:top">
+		<div class="dropdown" style="padding-right:7px;" >
+			<button onclick='window.location.href="messages.php"' class='dropbtn' style='background-image: url(data/messages.png)'></button>
+		</div>
 		<div class="dropdown" style="padding-right:7px;">
 			<?php
 				$username1 = $_SESSION['username'];
