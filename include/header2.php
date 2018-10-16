@@ -52,7 +52,7 @@
 		</div>
 		
 		<div class="dropdown">
-			<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-image: url(data/uploads/".$_SESSION['username'].".png)'></button> "?>
+			<?php echo "<button onclick='myFunction()' class='dropbtn' style='background-size:40px;background-position:0;background-image: url(data/uploads/".$_SESSION['username'].".png)'></button> "?>
 			<div id="myDropdown" class="dropdown-content">
 				<a href="profile.php">My Profile</a>
 				<a href="editProfile.php">Edit Profile</a>

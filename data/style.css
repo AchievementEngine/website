@@ -635,12 +635,13 @@ a {
 /* Dropdown Button */
 .dropbtn {
     color: white;
+	background-color:#202225;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-	background-size: 100%;
-    background-position: 45% 53%;
+	background-size: 50%;
+    background-position: 10px;
 	background-repeat: no-repeat;
     width: 40px;
     height: 40px;
