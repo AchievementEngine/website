@@ -147,7 +147,7 @@
 										$friendsB = true;
 									?>
 										<div class="dropdown" style="padding-right:7px;">
-											<button onclick='myFunction4()' class='dropbtn' style='width:150px; height:50px; border-radius:0; background-color:#555555'>Friends</button>
+											<button onclick='myFunction4()' class='dropbtn' style='width:150px; height:50px; border-radius:5%; background-color:#555555'>Friends</button>
 											<div id="friends" class="dropdown-content">
 												<a href='scripts/friends.php?username=<?=$username2?>&unfriend=unfriend' style='text-align:center' class='button'>Unfriend</a>
 											</div>
