@@ -101,7 +101,7 @@
 		<div class="content">
 			<div class="topInfo">
 				<div class="username"><?= $dispName." "; ?></div><!-- User selected badge here -->
-				<table width='100%'>
+				<table style="width: 100%;">
 					<tr>
 						<td style="text-align:left;">
 							<div class="achOverview">
