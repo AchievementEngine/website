@@ -381,7 +381,7 @@
 				Reinventing Game Achievements
 			</div>
 			<a href="/website/login.php" class="button" style="background-color:#7e4f9b;color:black;text-shadow:none;border-radius:25px;font-size:20px">Player Site</a>
-			<a href="/website/login.php" class="button" style="background-color:#7e4f9b;color:black;text-shadow:none;border-radius:25px;font-size:20px">Developer Site</a>
+			<a href="http://developers.achievement-engine.com" class="button" style="background-color:#7e4f9b;color:black;text-shadow:none;border-radius:25px;font-size:20px">Developer Site</a>
 		</div>
 		<div id="nav" class="nav dgrey">
 			<ul>
