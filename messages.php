@@ -36,7 +36,8 @@
 				$dispName = $selRow1['dispName'];
 			}
 			$convos[] = $row['id'];
-			$cOut .= "<li><a href='messages.php?cid=".$row['id']."'>".$dispName."</a></li>";
+			$picLeft = "<img src='data/uploads/".$recipient.".png' height='30px' style='border-radius:50%; vertical-align:middle; padding-right: 5px;' >";
+			$cOut .= "<li>".$picLeft."<a href='messages.php?cid=".$row['id']."'>".$dispName."</a></li>";
 		}
 
 		if(isset($_GET['cid'])) {
@@ -78,7 +79,7 @@
 					}
 				} else {
 					$otherGuysName = "Git outta here boi";
-					$mOut = "Oi these aren't your messages mate";
+					$mOut = "You don't have access to someone else's messages alas. Security/10";
 				}
 			}
 		} else {
@@ -93,7 +94,7 @@
 <html>
 <head>
 	<?php include ('include/header.php'); ?>
-	<title> Messages</title>
+	<title>Messages</title>
 </head>
 <body>
 	<?php include ('include/sideNav.php'); ?>
