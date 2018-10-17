@@ -10,8 +10,10 @@ if(isset($_POST['submit_password']) && $_POST['email'] && $_POST['password']) {
 	
 	$select="update users set pword='$hashed_password' where MD5(email)='$email'";
 	$results = $db->query($select);
-	
-	echo "Password succcessfully reset <br>";
-	echo "<a href='../login.php' class='button'>Sign in</a>";
 }
 ?>
+
+<html>
+<p>Password succcessfully reset</p>
+<a href='../login.php' class='button'>Sign in</a>
+</p>

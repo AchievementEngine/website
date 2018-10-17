@@ -17,18 +17,19 @@ if(isset($_POST['submit_email']) && $_POST['email']) {
 		$msg = "Click to Reset password\n http://www.achievement-engine.com/website/scripts/reset.php?key=".$md5email."&reset=".$md5pass."'";
 		$header = "From: noreply@achievement-engine.com";
 		$params = "-f noreply@achievement-engine.com";
-		/*
-		$msg ="Click to Reset password\n http://localhost/login/scripts/reset.php?key=".$md5email."&reset=".$md5pass."";
-		*/
+
 		mail($to, $subject, $msg, $header, $params);
 		
 		/*
 		todo include a token
-		generate rand 12 length string, add to users tablee
+		generate rand 12 length string, add to users table
 		include in email, make it part of the address
 		if token no match, could be someone else changing 
 		*/
-		echo "Click the link sent to your email to reset your password";		
 	}	
 }
 ?>
+
+<html>
+<p>Click the link we sent to your email, to reset your password</p>
+</html>
