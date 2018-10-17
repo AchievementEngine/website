@@ -64,6 +64,17 @@
 				</div>
 			<?php endif ?>	
 			
+			<?php  if (isset($_SESSION['password_success'])) : ?>
+				<div>
+					<p style="padding-left: 200px; color: green; font-size: 15pt">
+						<?php 
+							echo $_SESSION['password_success']; 
+							unset($_SESSION['password_success']);
+						?>
+					</p>
+				</div>
+			<?php endif ?>	
+			
 			<?php  if (isset($_SESSION['profile_failed'])) : ?>
 				<div>
 					<p style="padding-left: 200px; color: red; font-size: 15pt">
@@ -81,6 +92,28 @@
 						<?php 
 							echo $_SESSION['email_error']; 
 							unset($_SESSION['email_error']);
+						?>
+					</p>
+				</div>
+			<?php endif ?>	
+			
+			<?php  if (isset($_SESSION['password_error1'])) : ?>
+				<div>
+					<p style="padding-left: 200px; color: red; font-size: 15pt">
+						<?php 
+							echo $_SESSION['password_error1']; 
+							unset($_SESSION['password_error1']);
+						?>
+					</p>
+				</div>
+			<?php endif ?>	
+			
+			<?php  if (isset($_SESSION['password_error2'])) : ?>
+				<div>
+					<p style="padding-left: 200px; color: red; font-size: 15pt">
+						<?php 
+							echo $_SESSION['password_error2']; 
+							unset($_SESSION['password_error2']);
 						?>
 					</p>
 				</div>
@@ -124,7 +157,6 @@
 			
 			<br><br><br><br><br><hr><br><br>	<!-- one of these is a HR not a BR -->
 			
-			
 			<form action="scripts/upload.php" method="POST" enctype="multipart/form-data">
 				<div class="inputInfo" style="padding-left: 55px">
 					<label class="custom-file-upload">
@@ -136,6 +168,7 @@
 			</form>
 			
 			<br><br><hr><br><br>		<!-- one hr as well -->
+			
 			<?php 
 				$query1 = "SELECT a.achName FROM users u JOIN achievements a ON a.achStr = u.featuredach WHERE username = '$username'";
 				$queryResults = $db->query($query1);
@@ -161,6 +194,28 @@
 					<label><button type="submit" class="button" name="edit_achievements">Confirm</button></label>
 				</div>
 			</form>
+			
+			<br><br><br><br><br><br><hr><br><br>		<!-- one hr as well -->
+			
+			<h1 style="font-size:26px; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change password</h1>
+			<br><br>
+			<form action="scripts/changePassword.php" method="post">
+				<div class="inputInfo">
+					<label>Current Password</label>
+					<input type="password" name="currentPass"><br><br>
+				</div>
+				<div class="inputInfo">
+					<label>New Password</label>
+					<input type="password" name="newPass1"><br><br>
+				</div>
+				<div class="inputInfo">
+					<label>Confirm New</label>
+					<input type="password" name="newPass2"><br><br>
+				</div>
+				<div class="inputInfo">
+					<label><button type="submit" class="button" name="change_pass">Confirm</button></label>
+				</div>
+			</form>				
 			
 			<br><br><br><br><br><br><hr><br><br>		<!-- one hr as well -->
 			
