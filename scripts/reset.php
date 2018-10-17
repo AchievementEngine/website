@@ -43,10 +43,10 @@ if($_GET['key'] && $_GET['reset'])
 						<form method="post" action="newPass.php">
 							<input type="hidden" name="email" value="<?php echo $email;?>">
 							
-							<p>Enter New password</p>
+							<label>Enter New password</label><br>
 							<input type="password" name='password'>
-							
-							<input type="submit" name="submit_password">
+							<br><br>
+							<button type="submit" name="submit_password" class="button">Submit</button>
 						</form>
 					</div>
 					
