@@ -14,7 +14,6 @@ if($_GET['key'] && $_GET['reset'])
 	
 	if (mysqli_num_rows($results) == 1) {
 		?>
-		
 		<!DOCTYPE html>
 		<html>
 		<head>
@@ -54,10 +53,6 @@ if($_GET['key'] && $_GET['reset'])
 				</div>
 			</div>
 		</body>
-		</html> 	
-		
-		
-		<?php
-	}
-}
-?>
+		</html> 
+	<?php }
+} ?>

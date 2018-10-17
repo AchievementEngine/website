@@ -25,10 +25,7 @@ if(isset($_POST['submit_email']) && $_POST['email']) {
 		generate rand 12 length string, add to users table
 		include in email, make it part of the address
 		if token no match, could be someone else changing 
-		*/
-<<<<<<< HEAD
-		
-		//echo "Click the link sent to your email to reset your password";		
+		*/	
 	}	
 }
 ?>
@@ -52,6 +49,7 @@ if(isset($_POST['submit_email']) && $_POST['email']) {
 		</div>
 		
 		<br><br><br><br><br><br>
+		
 		<div class="content">
 			<div class="topInfo" style="margin-left:7%;">
 				<div class="username" style="text-align:left">Reset Password</div>
@@ -59,18 +57,8 @@ if(isset($_POST['submit_email']) && $_POST['email']) {
 			
 			<div class="inputInfo" style="padding-left: 5%;">
 				Click the link sent to your email to reset your password
-			</div>
-			
+			</div>	
 		</div>
 	</div>
 </body>
 </html> 
-=======
-	}	
-}
-?>
-
-<html>
-<p>Click the link we sent to your email, to reset your password</p>
-</html>
->>>>>>> 6fcef672386923dd16a457623aa2eda7ac74f9c9
