@@ -26,6 +26,7 @@ if(isset($_POST['submit_email']) && $_POST['email']) {
 		include in email, make it part of the address
 		if token no match, could be someone else changing 
 		*/
+<<<<<<< HEAD
 		
 		//echo "Click the link sent to your email to reset your password";		
 	}	
@@ -64,3 +65,12 @@ if(isset($_POST['submit_email']) && $_POST['email']) {
 	</div>
 </body>
 </html> 
+=======
+	}	
+}
+?>
+
+<html>
+<p>Click the link we sent to your email, to reset your password</p>
+</html>
+>>>>>>> 6fcef672386923dd16a457623aa2eda7ac74f9c9

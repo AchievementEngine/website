@@ -10,6 +10,7 @@ if(isset($_POST['submit_password']) && $_POST['email'] && $_POST['password']) {
 	
 	$select="update users set pword='$hashed_password' where MD5(email)='$email'";
 	$results = $db->query($select);
+<<<<<<< HEAD
 	
 	//echo "Password succcessfully reset <br>";
 	//echo "<a href='../login.php' class='button'>Sign in</a>";
@@ -49,3 +50,12 @@ if(isset($_POST['submit_password']) && $_POST['email'] && $_POST['password']) {
 	</div>
 </body>
 </html> 
+=======
+}
+?>
+
+<html>
+<p>Password succcessfully reset</p>
+<a href='../login.php' class='button'>Sign in</a>
+</p>
+>>>>>>> 6fcef672386923dd16a457623aa2eda7ac74f9c9
