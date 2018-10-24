@@ -57,7 +57,6 @@
 									$gameRow = $gameResults->fetch_array(MYSQLI_ASSOC);
 									$gameStr = $gameRow['gameStr'];
 									$gameName = $gameRow['gameName'];
-									//echo "test";
 									echo "<button onclick='$gameStr()' id='$gameName'>$gameName</button>"; 
 								} ?>
 							</div>
@@ -128,51 +127,47 @@
 			document.getElementById("locked").innerHTML = "<h1 style='font-size:18pt'> Locked Achievements </h1> <br>"; 
 			<?php
 			$achievements = "SELECT * FROM uachievements ua JOIN achievements a ON ua.gameID = a.gameID WHERE username = '$username' AND a.gameID = '$gameID' and ua.achStr = a.achStr and ua.progress = a.achValue";
-			$achResults = $db->query($achievements);		
-			while ($achRow = $achResults->fetch_assoc()) {
-				$achName = $achRow['achName'];
-				$achDesc = $achRow['achDesc'];
-				$achStr = $achRow['achStr'];
-				$achType = $achRow['achType'];
-				$achPic = "data/achievements/".$gameStr."/".$achStr.".png";
-				$achColour = "";
-				if($achType == "bronze") {
-					$achColour = "<i class='fas fa-circle' style='color:#CD7F32'></i>";
-				} else if($achType == "silver") {
-					$achColour = "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
-				} else if($achType == "gold") {
-					$achColour = "<i class='fas fa-circle' style='color:#FFD700'></i>";
-				} else if($achType == "diamond") {
-					$achColour = "<i class='fas fa-circle' style='color:#00F6FF'></i>";
-				} else if($achType == "nil") {
-					$achColour = "<i class='fas fa-circle' style='color:#000000'></i>";
-				}
-				
-				$countAchieved = "SELECT count(*) FROM uachievements ua JOIN achievements a ON ua.achStr = a.achStr WHERE ua.progress = a.achValue AND ua.gameID = a.gameID AND ua.gameID = '$gameID' AND ua.username = '$username'";
-				$countAchResults = $db->query($countAchieved);
-				$countAchRow = $countAchResults->fetch_array(MYSQLI_ASSOC);
-				$countAch = $countAchRow['count(*)'];
-				$countAll = "SELECT count(*) FROM achievements WHERE gameID = '$gameID'";
-				$countAllResults = $db->query($countAll);
-				$countAllRow = $countAllResults->fetch_array(MYSQLI_ASSOC);
-				$countAll = $countAllRow['count(*)'];
-				
-				$progressPercent = round(($countAch/$countAll) * 100, 0);
-				if ($progressPercent < 1) {
-					$progressPercent = 1;
-				}
-				?>
-				
-				header.innerHTML = "<?=$gameName?> ";
-				
-				subheader.innerHTML =
-					"<?=$countAch?> / <?=$countAll?> Achievements Completed (<?=$progressPercent?>%)<br>" + 
-					"<div class='pBar' style='height:20px'>" + 
-						"    <div class='pProgress' style='width:<?=$progressPercent?>%; align:center; height:50%;'>" + 
-						"</div>" +
-					"</div>";
-				
-				unlocked.innerHTML += 	
+			$achResults = $db->query($achievements);	
+			
+			/* preset stats for when no achievements. Will be overridden otherwise */
+			$countAch = 0;
+			$progressPercent = 0;
+			$countAll = "SELECT count(*) FROM achievements WHERE gameID = '$gameID'";
+			$countAllResults = $db->query($countAll);
+			$countAllRow = $countAllResults->fetch_array(MYSQLI_ASSOC);
+			$countAll = $countAllRow['count(*)'];
+			
+			if (mysqli_num_rows($achResults) > 0) {
+				while ($achRow = $achResults->fetch_assoc()) {
+					$achName = $achRow['achName'];
+					$achDesc = $achRow['achDesc'];
+					$achStr = $achRow['achStr'];
+					$achType = $achRow['achType'];
+					$achPic = "data/achievements/".$gameStr."/".$achStr.".png";
+					$achColour = "";
+					if($achType == "bronze") {
+						$achColour = "<i class='fas fa-circle' style='color:#CD7F32'></i>";
+					} else if($achType == "silver") {
+						$achColour = "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
+					} else if($achType == "gold") {
+						$achColour = "<i class='fas fa-circle' style='color:#FFD700'></i>";
+					} else if($achType == "diamond") {
+						$achColour = "<i class='fas fa-circle' style='color:#00F6FF'></i>";
+					} else if($achType == "nil") {
+						$achColour = "<i class='fas fa-circle' style='color:#000000'></i>";
+					}
+					
+					$countAchieved = "SELECT count(*) FROM uachievements ua JOIN achievements a ON ua.achStr = a.achStr WHERE ua.progress = a.achValue AND ua.gameID = a.gameID AND ua.gameID = '$gameID' AND ua.username = '$username'";
+					$countAchResults = $db->query($countAchieved);
+					$countAchRow = $countAchResults->fetch_array(MYSQLI_ASSOC);
+					$countAch = $countAchRow['count(*)'];
+					
+					$progressPercent = round(($countAch/$countAll) * 100, 0);
+					if ($progressPercent < 1) {
+						$progressPercent = 1;
+					}
+					?>
+					unlocked.innerHTML += 	
 					"<div class = featuredAch>"+
 						"<img src='<?=$achPic?>' height='70px'>" +
 						"<div class = featureInfo>"+
@@ -185,57 +180,72 @@
 							"</div>"+
 						"</div>"+
 					"</div>";
+				<?php } 
+			} else { ?>
+				unlocked.style.display = "none"
+			<?php } ?>
 				
+			header.innerHTML = "<?=$gameName?> ";
+			
+			subheader.innerHTML =
+				"<?=$countAch?> / <?=$countAll?> Achievements Completed (<?=$progressPercent?>%)<br>" + 
+				"<div class='pBar' style='height:20px'>" + 
+					"    <div class='pProgress' style='width:<?=$progressPercent?>%; align:center; height:50%;'>" + 
+					"</div>" +
+				"</div>";
+			
 			<?php
-			}
 			$lockedAchievements = "SELECT * FROM uachievements ua JOIN achievements a ON ua.gameID = a.gameID WHERE username = '$username' AND a.gameID = '$gameID' AND ua.achStr = a.achStr AND ua.progress < a.achValue";
 			$lockedResults = $db->query($lockedAchievements);	
-			while ($lockedRow = $lockedResults->fetch_assoc()) {
-				$lockedName = $lockedRow['achName'];
-				$lockedDesc = $lockedRow['achDesc'];
-				$lockedStr = $lockedRow['achStr'];
-				$lockedType = $lockedRow['achType'];
-				$lockedProgress = $lockedRow['progress'];
-				$lockedValue = $lockedRow['achValue'];
-				$lockedPic = "data/achievements/".$gameStr."/".$lockedStr.".png";
-				$lockedColour = "";
-				$lockedPercent = round($lockedProgress/$lockedValue * 100, 0);
-				if ($lockedPercent < 1) {
-					$lockedPercent = 1;
-				}
-				if($lockedType == "bronze") {
-					$lockedColour = "<i class='fas fa-circle' style='color:#CD7F32'></i>";
-				} else if($lockedType == "silver") {
-					$lockedColour = "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
-				} else if($lockedType == "gold") {
-					$lockedColour = "<i class='fas fa-circle' style='color:#FFD700'></i>";
-				} else if($lockedType == "diamond") {
-					$lockedColour = "<i class='fas fa-circle' style='color:#00F6FF'></i>";
-				} else if($lockedType == "nil") {
-					$lockedColour = "<i class='fas fa-circle' style='color:#000000'></i>";
-				}
-				?>
-				locked.innerHTML +=
-					"<div class = featuredAch>"+
-						"<img src='<?=$lockedPic?>' height='70px'>" +
-						"<div class = featureInfo>"+
-							"<div class = featureName>"+
-								"<?=$lockedColour?>"+
-								" <?=$lockedName?>"+
+			if (mysqli_num_rows($lockedResults) > 0) {
+				while ($lockedRow = $lockedResults->fetch_assoc()) {
+					$lockedName = $lockedRow['achName'];
+					$lockedDesc = $lockedRow['achDesc'];
+					$lockedStr = $lockedRow['achStr'];
+					$lockedType = $lockedRow['achType'];
+					$lockedProgress = $lockedRow['progress'];
+					$lockedValue = $lockedRow['achValue'];
+					$lockedPic = "data/achievements/".$gameStr."/".$lockedStr.".png";
+					$lockedColour = "";
+					$lockedPercent = round($lockedProgress/$lockedValue * 100, 0);
+					if ($lockedPercent < 1) {
+						$lockedPercent = 1;
+					}
+					if($lockedType == "bronze") {
+						$lockedColour = "<i class='fas fa-circle' style='color:#CD7F32'></i>";
+					} else if($lockedType == "silver") {
+						$lockedColour = "<i class='fas fa-circle' style='color:#D8D8D8'></i>";
+					} else if($lockedType == "gold") {
+						$lockedColour = "<i class='fas fa-circle' style='color:#FFD700'></i>";
+					} else if($lockedType == "diamond") {
+						$lockedColour = "<i class='fas fa-circle' style='color:#00F6FF'></i>";
+					} else if($lockedType == "nil") {
+						$lockedColour = "<i class='fas fa-circle' style='color:#000000'></i>";
+					}
+					?>
+					locked.innerHTML +=
+						"<div class = featuredAch>"+
+							"<img src='<?=$lockedPic?>' height='70px'>" +
+							"<div class = featureInfo>"+
+								"<div class = featureName>"+
+									"<?=$lockedColour?>"+
+									" <?=$lockedName?>"+
+								"</div>"+
+								"<div style=padding:5px 5px 5px 20px;>"+
+									"<?=$lockedDesc?>" +
+								"</div>"+
+								
+								"<div class='pBar'>" + 
+									"<div class='pProgress' style='width:<?=$lockedPercent?>%'>" + 
+									"<?=$lockedProgress?>/<?=$lockedValue?>" + 
+									"</div>" +
+								"</div>"+
 							"</div>"+
-							"<div style=padding:5px 5px 5px 20px;>"+
-								"<?=$lockedDesc?>" +
-							"</div>"+
-							
-							"<div class='pBar'>" + 
-								"<div class='pProgress' style='width:<?=$lockedPercent?>%'>" + 
-								"<?=$lockedProgress?>/<?=$lockedValue?>" + 
-								"</div>" +
-							"</div>"+
-						"</div>"+
-					"</div>";
-				
-			<?php }	?>	
+						"</div>";
+				<?php }	
+			} else { ?>	
+				locked.style.display = "none"
+			<?php } ?>
 		}
 	<?php } ?>
 </script>
