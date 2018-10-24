@@ -54,7 +54,7 @@
 					<table style="width:100%;" class="table">
 					<?php 
 						$user = $_SESSION['username'];
-						$achQuery = "SELECT u.dispName, a.achName, a.achStr, g.gameName, g.gameStr, ua.datetime FROM friends f JOIN uachievements ua on f.user2 = ua.username join achievements a on ua.achStr = a.achStr join games g on g.gameID = a.gameID join users u on ua.username = u.username where f.user1 = '$user' and ua.datetime is not null order by ua.datetime desc";
+						$achQuery = "SELECT u.dispName, a.achName, a.achStr, g.gameName, g.gameStr, ua.datetime FROM friends f JOIN uachievements ua on f.user2 = ua.username join achievements a on ua.achStr = a.achStr join games g on g.gameID = a.gameID join users u on ua.username = u.username where f.user1 = '$user' and ua.progress = a.achValue and ua.datetime is not null order by ua.datetime desc";
 						$achResults = $db->query($achQuery);
 						if (mysqli_num_rows($achResults) > 0) {
 							while ($achRow = $achResults->fetch_array(MYSQLI_ASSOC)) {
